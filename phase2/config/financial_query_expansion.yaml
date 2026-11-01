@@ -1,0 +1,54 @@
+# FinGuard Phase 2: Financial Query Expansion & Weighted RRF Configuration
+# Configurable financial terminology, directional groups, and RRF weights.
+
+enabled: true
+max_queries: 6
+rrf_k: 60
+per_query_top_k: 15
+final_candidate_top_k: 15
+
+# Finance-aware synonym dictionary
+synonyms:
+  "net profit": ["net income", "profit after tax"]
+  "revenue": ["sales", "operating revenue"]
+  "decreased": ["declined", "fell", "dropped", "reduced"]
+  "increased": ["rose", "grew", "climbed", "improved"]
+  "total assets": ["assets", "total asset base"]
+  "fy2024": ["fiscal year 2024", "financial year 2024"]
+  "earnings": ["profits", "net income"]
+  "debt": ["liabilities", "federal debt"]
+  "national debt": ["gross federal debt", "public debt"]
+  "gdp": ["economic output", "gross domestic product"]
+
+# Known verified company aliases (full name, common short name, abbreviation, ticker)
+company_aliases:
+  "Apple": ["Apple Inc.", "AAPL"]
+  "Apple Inc.": ["Apple", "AAPL"]
+  "Amazon": ["Amazon.com", "AMZN"]
+  "Amazon.com": ["Amazon", "AMZN"]
+  "Microsoft": ["Microsoft Corp", "MSFT"]
+  "Microsoft Corp": ["Microsoft", "MSFT"]
+  "Google": ["Alphabet", "GOOGL"]
+  "Alphabet": ["Google", "GOOGL"]
+  "Tesla": ["Tesla Inc.", "TSLA"]
+  "Tesla Inc.": ["Tesla", "TSLA"]
+  "Meta": ["Facebook", "META"]
+  "Facebook": ["Meta", "META"]
+
+# Directional groups for supporting vs contradicting evidence retrieval
+directional_groups:
+  decrease:
+    supporting: ["decreased", "declined", "fell", "dropped", "reduced"]
+    contradicting: ["increased", "rose", "grew", "climbed", "improved"]
+  increase:
+    supporting: ["increased", "rose", "grew", "climbed", "improved"]
+    contradicting: ["decreased", "declined", "fell", "dropped", "reduced"]
+
+# Per-query-group RRF weights
+rrf_weights:
+  original_claim: 1.2
+  entity_metric_period: 1.0
+  synonym_expanded: 0.9
+  numerical_query: 1.0
+  supporting_direction: 1.0
+  contradicting_direction: 1.0

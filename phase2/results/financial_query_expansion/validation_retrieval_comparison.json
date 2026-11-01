@@ -1,0 +1,24 @@
+{
+  "evaluation_name": "Validation Set Retrieval Comparison (337 Claims)",
+  "claims_evaluated": 337,
+  "claims_with_gold_evidence": 322,
+  "single_query_bm25": {
+    "recall_at_15": 85.4,
+    "hits": 275,
+    "unique_corpus_passages_retrieved": 3266,
+    "avg_latency_ms": 45.57
+  },
+  "multi_query_weighted_rrf": {
+    "recall_at_15": 85.09,
+    "hits": 274,
+    "unique_corpus_passages_retrieved": 3271,
+    "avg_latency_ms": 51.31,
+    "avg_queries_generated": 2.2
+  },
+  "deltas": {
+    "recall_gain_percentage_points": -0.31,
+    "relative_recall_improvement_pct": -0.36,
+    "latency_overhead_ms": 5.75,
+    "additional_unique_passages_discovered": 5
+  }
+}

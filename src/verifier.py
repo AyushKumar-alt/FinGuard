@@ -21,6 +21,7 @@ import torch
 from typing import List, Dict, Any, Tuple
 
 DEFAULT_NLI_MODEL = "cross-encoder/nli-distilroberta-base"
+FINETUNED_NLI_MODEL = "models/finetuned_nli"
 LABEL_MAPPING = {0: "false", 1: "true", 2: "NEI"}
 
 class FinancialClaimVerifier:
@@ -32,7 +33,15 @@ class FinancialClaimVerifier:
         self.baseline_model = None
         self.nli_tokenizer = None
         self.nli_model = None
-        self.nli_model_name = nli_model_name
+        
+        # Support alias names
+        if nli_model_name == "financial_finetuned":
+            self.nli_model_name = FINETUNED_NLI_MODEL
+        elif nli_model_name == "pretrained_zero_shot":
+            self.nli_model_name = DEFAULT_NLI_MODEL
+        else:
+            self.nli_model_name = nli_model_name
+            
         self.id2label_nli = {}
         self.has_transformer = False
         
@@ -44,17 +53,18 @@ class FinancialClaimVerifier:
             except Exception as e:
                 print(f"Warning: Could not load baseline model: {e}", flush=True)
                 
-        # 2. Optionally load pretrained NLI transformer
+        # 2. Optionally load pretrained/fine-tuned NLI transformer
         if use_transformer:
             self._init_nli_model()
 
     def _init_nli_model(self):
-        """Initializes pretrained NLI model and reads actual id2label mapping."""
+        """Initializes NLI cross-encoder model and reads actual id2label mapping."""
         try:
             from transformers import AutoTokenizer, AutoModelForSequenceClassification
-            print(f"Loading pretrained NLI cross-encoder: {self.nli_model_name} on {self.device}...", flush=True)
-            self.nli_tokenizer = AutoTokenizer.from_pretrained(self.nli_model_name)
-            self.nli_model = AutoModelForSequenceClassification.from_pretrained(self.nli_model_name)
+            print(f"Loading NLI cross-encoder: {self.nli_model_name} on {self.device}...", flush=True)
+            local_only = os.path.exists(self.nli_model_name)
+            self.nli_tokenizer = AutoTokenizer.from_pretrained(self.nli_model_name, local_files_only=local_only)
+            self.nli_model = AutoModelForSequenceClassification.from_pretrained(self.nli_model_name, local_files_only=local_only)
             self.nli_model.to(self.device)
             self.nli_model.eval()
             
@@ -175,7 +185,7 @@ class FinancialClaimVerifier:
             }
 
         # 2. Select Engine
-        use_nli = (engine_choice in ("transformer_nli", "auto")) and self.has_transformer
+        use_nli = (engine_choice in ("transformer_nli", "auto", "financial_finetuned", "pretrained_zero_shot")) and self.has_transformer
         
         supporting_evidence = []
         contradicting_evidence = []

@@ -2,8 +2,8 @@
 FinGuard End-to-End Financial Claim Verification Pipeline.
 Orchestrates:
 1. Financial Claim Understanding (Entities, metrics, amounts, periods, directions)
-2. Query Construction & Expansion (Direction-preserving financial expansions)
-3. Multi-Strategy Evidence Retrieval (BM25, Pretrained Dense, Hybrid RRF, Boolean/Phrase)
+2. Query Construction & Expansion (Direction-preserving financial expansions, multi-query)
+3. Multi-Strategy Evidence Retrieval (BM25, Pretrained Dense, Hybrid RRF, Weighted RRF)
 4. Cross-Encoder Joint Reranking (ms-marco-MiniLM-L-6-v2)
 5. Evidence-Grounded Verification (Pretrained Cross-Encoder NLI / Calibrated Baseline)
 6. Multi-Sentence Conflict & Uncertainty Aggregation
@@ -16,7 +16,7 @@ import sys
 from typing import Dict, List, Any, Optional
 
 # Ensure local imports work reliably
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from src.claim_understanding import extract_financial_entities
 from src.query_construction import FinancialQueryBuilder
@@ -26,7 +26,8 @@ from src.reranker import PretrainedCrossEncoderReranker
 from src.verifier import FinancialClaimVerifier
 
 class FinGuardPipeline:
-    def __init__(self, json_path: str = "finfact.json", load_heavy_models: bool = True):
+    def __init__(self, json_path: str = "finfact.json", load_heavy_models: bool = True,
+                 nli_model_name: str = "cross-encoder/nli-distilroberta-base"):
         self.json_path = json_path
         print(f"Initializing FinGuard Pipeline with {json_path}...", flush=True)
         
@@ -61,6 +62,7 @@ class FinGuardPipeline:
         # 5. Financial Claim Verifier (NLI Transformer + Calibrated Baseline)
         self.verifier = FinancialClaimVerifier(
             baseline_model_path="outputs/best_baseline_model.pkl",
+            nli_model_name=nli_model_name,
             use_transformer=load_heavy_models
         )
         print("FinGuard Pipeline successfully initialized!", flush=True)
@@ -72,6 +74,20 @@ class FinGuardPipeline:
         for ranking in rankings:
             for rank, (doc_id, _) in enumerate(ranking, start=1):
                 fused_scores[doc_id] = fused_scores.get(doc_id, 0.0) + 1.0 / (k + rank)
+        return sorted(fused_scores.items(), key=lambda item: item[1], reverse=True)[:top_k]
+
+    @staticmethod
+    def _weighted_reciprocal_rank_fusion(weighted_rankings, top_k: int = 15, k: int = 60):
+        """
+        Fuse multiple ranked lists using Weighted Reciprocal Rank Fusion:
+            RRF(d) = sum_{q in Q} w_q / (k + rank_q(d))
+        Where weighted_rankings is a list of (ranked_list, weight) tuples.
+        """
+        fused_scores = {}
+        for ranking, weight in weighted_rankings:
+            w = float(weight)
+            for rank, (doc_id, _) in enumerate(ranking, start=1):
+                fused_scores[doc_id] = fused_scores.get(doc_id, 0.0) + w / (k + rank)
         return sorted(fused_scores.items(), key=lambda item: item[1], reverse=True)[:top_k]
 
     def run(self, claim: str,
@@ -103,7 +119,9 @@ class FinGuardPipeline:
         
         # Step 2: Query Construction & Expansion
         query_info = self.query_builder.build_queries(claim, parsed_claim)
+        multi_queries = query_info.get("multi_queries", [])
         search_query = query_info["combined_query"] if use_query_expansion else claim
+        is_expansion_enabled = use_query_expansion and getattr(self.query_builder, "enabled", True)
         
         # Step 3: Retrieval Execution
         retrieved_pairs = [] # list of (doc_id, score)
@@ -148,8 +166,23 @@ class FinGuardPipeline:
                 retrieved_pairs = self.retriever.retrieve_bm25(search_query, top_k=top_k_retrieve)
                 retrieval_engine = "bm25_fallback_pipeline1_unavailable"
         elif used_mode == "bm25":
-            retrieved_pairs = self.retriever.retrieve_bm25(search_query, top_k=top_k_retrieve)
-            retrieval_engine = "bm25"
+            if is_expansion_enabled and multi_queries and len(multi_queries) > 1:
+                per_query_k = self.query_builder.config.get("per_query_top_k", top_k_retrieve)
+                final_k = self.query_builder.config.get("final_candidate_top_k", top_k_retrieve)
+                rrf_k = self.query_builder.config.get("rrf_k", 60)
+                
+                weighted_rankings = []
+                for q_obj in multi_queries:
+                    ranks = self.retriever.retrieve_bm25(q_obj["query"], top_k=per_query_k)
+                    weighted_rankings.append((ranks, float(q_obj.get("weight", 1.0))))
+                    
+                retrieved_pairs = self._weighted_reciprocal_rank_fusion(
+                    weighted_rankings, top_k=final_k, k=rrf_k
+                )
+                retrieval_engine = "bm25_weighted_rrf"
+            else:
+                retrieved_pairs = self.retriever.retrieve_bm25(search_query, top_k=top_k_retrieve)
+                retrieval_engine = "bm25"
         else:
             raise ValueError(f"Unsupported retrieval_mode: {retrieval_mode}")
 
@@ -223,15 +256,3 @@ class FinGuardPipeline:
                 "baseline_verifier": self.verifier.baseline_model is not None
             }
         }
-
-if __name__ == "__main__":
-    pipeline = FinGuardPipeline(json_path="finfact.json", load_heavy_models=True)
-    test_claim = "Did Biden Call for an 'End to Shareholder Capitalism' in July 2020?"
-    out = pipeline.run(test_claim, retrieval_mode="bm25", use_query_expansion=True, use_reranker=True, use_nli=True)
-    print("\nPipeline Result:")
-    print("Verdict:", out["verdict"])
-    print("Confidence:", out["confidence"])
-    print("Engine:", out["verifier_engine"])
-    print("Selected Evidence count:", len(out["selected_evidence_docs"]))
-    for i, ev in enumerate(out["selected_evidence_docs"]):
-        print(f"  [{i+1}] (Score: {ev.get('rerank_score', ev.get('score'))}): {ev['text']}")

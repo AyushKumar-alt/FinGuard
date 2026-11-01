@@ -42,3 +42,8 @@ desktop.ini
 # IDE configurations
 .vscode/
 .idea/
+
+# Large Model Weights (>100MB)
+*.safetensors
+*.bin
+*.pt

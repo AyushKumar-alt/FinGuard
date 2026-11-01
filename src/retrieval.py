@@ -184,6 +184,43 @@ class EvidenceRetrievalBenchmark:
         sorted_docs = sorted(rrf_scores.items(), key=lambda x: x[1], reverse=True)[:top_k]
         return [(int(doc_id), float(score)) for doc_id, score in sorted_docs]
 
+    def retrieve_multi_query_weighted_rrf(
+        self,
+        queries_with_weights: list,
+        per_query_top_k: int = 15,
+        final_top_k: int = 15,
+        k: int = 60
+    ) -> list:
+        """
+        Executes BM25 retrieval for each query in queries_with_weights,
+        and fuses candidate rankings using Weighted Reciprocal Rank Fusion:
+            RRF(d) = sum_{q in Q} w_q / (k + rank_q(d))
+        Where:
+            w_q = configurable weight for query q
+            k = smoothing constant (default: 60)
+            rank_q(d) = 1-based position of document d in query q's ranked result list.
+        Returns top final_top_k (doc_id, fused_score) pairs.
+        """
+        fused_scores = defaultdict(float)
+        for item in queries_with_weights:
+            if isinstance(item, (list, tuple)):
+                q_text, weight = item[0], float(item[1])
+            elif isinstance(item, dict):
+                q_text = item.get("query", "")
+                weight = float(item.get("weight", 1.0))
+            else:
+                q_text, weight = str(item), 1.0
+
+            if not q_text or not q_text.strip():
+                continue
+
+            ranks = self.retrieve_bm25(q_text, top_k=per_query_top_k)
+            for rank, (doc_id, _) in enumerate(ranks, start=1):
+                fused_scores[doc_id] += weight / (k + rank)
+
+        sorted_docs = sorted(fused_scores.items(), key=lambda x: x[1], reverse=True)[:final_top_k]
+        return [(int(doc_id), float(score)) for doc_id, score in sorted_docs]
+
     def evaluate_retrieval(self, eval_query_ids: list, top_k: int = 10):
         """
         Evaluates retrieval methods on candidate queries.

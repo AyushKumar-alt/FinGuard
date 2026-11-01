@@ -1,0 +1,49 @@
+{
+  "dataset_name": "FinGuard Financial NLI Benchmark",
+  "created_at": "2026-11-01",
+  "label_mapping": {
+    "0": "contradiction",
+    "1": "entailment",
+    "2": "neutral"
+  },
+  "splits": {
+    "train": {
+      "total_pairs": 7481,
+      "class_distribution": {
+        "neutral": 3865,
+        "entailment": 2456,
+        "contradiction": 1160
+      },
+      "high_confidence_pairs": 6717,
+      "weakly_supervised_pairs": 764,
+      "ambiguous_quarantined_pairs": 4061
+    },
+    "validation": {
+      "total_pairs": 1155,
+      "class_distribution": {
+        "neutral": 544,
+        "entailment": 421,
+        "contradiction": 190
+      },
+      "high_confidence_pairs": 1043,
+      "weakly_supervised_pairs": 112,
+      "ambiguous_quarantined_pairs": 572
+    },
+    "test": {
+      "total_pairs": 2361,
+      "class_distribution": {
+        "neutral": 1272,
+        "entailment": 751,
+        "contradiction": 338
+      },
+      "high_confidence_pairs": 2168,
+      "weakly_supervised_pairs": 193,
+      "ambiguous_quarantined_pairs": 1092
+    }
+  },
+  "integrity_checks": {
+    "train_val_claim_overlap": 0,
+    "train_test_claim_overlap": 0,
+    "test_claims_used_in_training": false
+  }
+}

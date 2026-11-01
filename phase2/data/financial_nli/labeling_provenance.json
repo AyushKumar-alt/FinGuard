@@ -1,0 +1,50 @@
+{
+  "R_ENTAIL_HIGH_OVERLAP": {
+    "target_label": 1,
+    "label_name": "entailment",
+    "source_claim_gold_label": "true",
+    "description": "Evidence sentence from verified TRUE claim with >= 2 matching content tokens and zero refutation cues.",
+    "confidence": 0.9,
+    "is_weakly_supervised": false
+  },
+  "R_ENTAIL_MODERATE_OVERLAP": {
+    "target_label": 1,
+    "label_name": "entailment",
+    "source_claim_gold_label": "true",
+    "description": "Evidence sentence from verified TRUE claim with exactly 1 matching content token and zero refutation cues.",
+    "confidence": 0.75,
+    "is_weakly_supervised": true
+  },
+  "R_CONTRA_EXPLICIT_REFUTATION": {
+    "target_label": 0,
+    "label_name": "contradiction",
+    "source_claim_gold_label": "false",
+    "description": "Evidence sentence from verified FALSE claim containing explicit negation/refutation markers and >= 1 matching content token.",
+    "confidence": 0.88,
+    "is_weakly_supervised": false
+  },
+  "R_NEUTRAL_ARTICLE_CONTEXT": {
+    "target_label": 2,
+    "label_name": "neutral",
+    "source_claim_gold_label": "true",
+    "description": "Contextual sentence from the same article of a TRUE claim with 0 content word overlap, providing setting or background without affirming the assertion.",
+    "confidence": 0.85,
+    "is_weakly_supervised": false
+  },
+  "R_NEUTRAL_FALSE_CONTEXT": {
+    "target_label": 2,
+    "label_name": "neutral",
+    "source_claim_gold_label": "false",
+    "description": "Background sentence from a FALSE claim article with zero refutation cues and 0 content word overlap.",
+    "confidence": 0.85,
+    "is_weakly_supervised": false
+  },
+  "R_NEUTRAL_NEI_CONTEXT": {
+    "target_label": 2,
+    "label_name": "neutral",
+    "source_claim_gold_label": "NEI",
+    "description": "Evidence sentence from an inconclusive (NEI) claim that provides non-definitive background and lacks refutation cues.",
+    "confidence": 0.88,
+    "is_weakly_supervised": false
+  }
+}

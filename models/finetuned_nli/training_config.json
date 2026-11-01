@@ -1,0 +1,14 @@
+{
+  "base_model": "cross-encoder/nli-distilroberta-base",
+  "data_dir": "phase2/data/financial_nli",
+  "output_dir": "models/finetuned_nli",
+  "max_length": 160,
+  "batch_size": 16,
+  "learning_rate": 2e-05,
+  "weight_decay": 0.01,
+  "epochs": 2,
+  "patience": 2,
+  "balance_train": true,
+  "max_samples_per_class": 800,
+  "seed": 42
+}

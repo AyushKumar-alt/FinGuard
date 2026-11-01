@@ -1,0 +1,164 @@
+{
+  "base_checkpoint": "cross-encoder/nli-distilroberta-base",
+  "total_epochs_run": 2,
+  "total_training_seconds": 2098.77,
+  "zero_shot_baseline": {
+    "loss": 2.281,
+    "accuracy": 36.54,
+    "macro_f1": 27.94,
+    "weighted_f1": 32.67,
+    "macro_precision": 37.97,
+    "macro_recall": 31.22,
+    "per_class": {
+      "contradiction": {
+        "precision": 13.71,
+        "recall": 21.58,
+        "f1": 16.77,
+        "support": 190
+      },
+      "entailment": {
+        "precision": 56.72,
+        "recall": 9.03,
+        "f1": 15.57,
+        "support": 421
+      },
+      "neutral": {
+        "precision": 43.47,
+        "recall": 63.05,
+        "f1": 51.46,
+        "support": 544
+      }
+    },
+    "confusion_matrix": [
+      [
+        41,
+        12,
+        137
+      ],
+      [
+        74,
+        38,
+        309
+      ],
+      [
+        184,
+        17,
+        343
+      ]
+    ],
+    "sample_count": 1155
+  },
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.795,
+      "epoch_duration_seconds": 1041.14,
+      "val_metrics": {
+        "loss": 0.8776,
+        "accuracy": 65.28,
+        "macro_f1": 64.64,
+        "weighted_f1": 65.67,
+        "macro_precision": 64.11,
+        "macro_recall": 69.08,
+        "per_class": {
+          "contradiction": {
+            "precision": 46.71,
+            "recall": 82.11,
+            "f1": 59.54,
+            "support": 190
+          },
+          "entailment": {
+            "precision": 72.38,
+            "recall": 67.22,
+            "f1": 69.7,
+            "support": 421
+          },
+          "neutral": {
+            "precision": 73.26,
+            "recall": 57.9,
+            "f1": 64.68,
+            "support": 544
+          }
+        },
+        "confusion_matrix": [
+          [
+            156,
+            9,
+            25
+          ],
+          [
+            48,
+            283,
+            90
+          ],
+          [
+            130,
+            99,
+            315
+          ]
+        ],
+        "sample_count": 1155
+      }
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.2709,
+      "epoch_duration_seconds": 866.61,
+      "val_metrics": {
+        "loss": 1.3881,
+        "accuracy": 56.62,
+        "macro_f1": 56.33,
+        "weighted_f1": 52.52,
+        "macro_precision": 59.71,
+        "macro_recall": 65.53,
+        "per_class": {
+          "contradiction": {
+            "precision": 52.16,
+            "recall": 88.95,
+            "f1": 65.76,
+            "support": 190
+          },
+          "entailment": {
+            "precision": 53.92,
+            "recall": 81.71,
+            "f1": 64.97,
+            "support": 421
+          },
+          "neutral": {
+            "precision": 73.06,
+            "recall": 25.92,
+            "f1": 38.26,
+            "support": 544
+          }
+        },
+        "confusion_matrix": [
+          [
+            169,
+            16,
+            5
+          ],
+          [
+            30,
+            344,
+            47
+          ],
+          [
+            125,
+            278,
+            141
+          ]
+        ],
+        "sample_count": 1155
+      }
+    }
+  ],
+  "best_checkpoint": {
+    "best_epoch": 1,
+    "best_val_macro_f1": 64.64,
+    "class_weights": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  }
+}

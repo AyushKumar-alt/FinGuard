@@ -1,0 +1,104 @@
+{
+  "eval_dataset": "phase2/data/financial_nli/validation.jsonl",
+  "pair_count": 1155,
+  "model_a_zero_shot": {
+    "model_path": "cross-encoder/nli-distilroberta-base",
+    "sample_count": 1155,
+    "accuracy": 36.54,
+    "macro_f1": 27.94,
+    "weighted_f1": 32.67,
+    "macro_precision": 37.97,
+    "macro_recall": 31.22,
+    "per_class": {
+      "contradiction": {
+        "precision": 13.71,
+        "recall": 21.58,
+        "f1": 16.77,
+        "support": 190
+      },
+      "entailment": {
+        "precision": 56.72,
+        "recall": 9.03,
+        "f1": 15.57,
+        "support": 421
+      },
+      "neutral": {
+        "precision": 43.47,
+        "recall": 63.05,
+        "f1": 51.46,
+        "support": 544
+      }
+    },
+    "confusion_matrix": [
+      [
+        41,
+        12,
+        137
+      ],
+      [
+        74,
+        38,
+        309
+      ],
+      [
+        184,
+        17,
+        343
+      ]
+    ]
+  },
+  "model_b_finetuned": {
+    "model_path": "models/finetuned_nli",
+    "sample_count": 1155,
+    "accuracy": 65.28,
+    "macro_f1": 64.64,
+    "weighted_f1": 65.67,
+    "macro_precision": 64.11,
+    "macro_recall": 69.08,
+    "per_class": {
+      "contradiction": {
+        "precision": 46.71,
+        "recall": 82.11,
+        "f1": 59.54,
+        "support": 190
+      },
+      "entailment": {
+        "precision": 72.38,
+        "recall": 67.22,
+        "f1": 69.7,
+        "support": 421
+      },
+      "neutral": {
+        "precision": 73.26,
+        "recall": 57.9,
+        "f1": 64.68,
+        "support": 544
+      }
+    },
+    "confusion_matrix": [
+      [
+        156,
+        9,
+        25
+      ],
+      [
+        48,
+        283,
+        90
+      ],
+      [
+        130,
+        99,
+        315
+      ]
+    ]
+  },
+  "deltas": {
+    "accuracy_delta": 28.74,
+    "macro_f1_delta": 36.7,
+    "weighted_f1_delta": 33.0,
+    "contradiction_f1_delta": 42.77,
+    "entailment_f1_delta": 54.13,
+    "neutral_f1_delta": 13.22
+  }
+}

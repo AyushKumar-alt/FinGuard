@@ -1,0 +1,177 @@
+{
+  "evaluation_name": "FinGuard 675 Held-Out Claims Verification Comparison",
+  "benchmark_claims_count": 675,
+  "systems": {
+    "System_A_TFIDF_Baseline": {
+      "accuracy": 55.56,
+      "macro_f1": 48.97,
+      "weighted_f1": 54.98,
+      "per_class": {
+        "false": {
+          "precision": 60.18,
+          "recall": 66.22,
+          "f1": 63.06,
+          "support": 299
+        },
+        "true": {
+          "precision": 61.89,
+          "recall": 59.22,
+          "f1": 60.52,
+          "support": 255
+        },
+        "NEI": {
+          "precision": 25.49,
+          "recall": 21.49,
+          "f1": 23.32,
+          "support": 121
+        }
+      },
+      "predicted_distribution": {
+        "false": 329,
+        "true": 244,
+        "NEI": 102
+      },
+      "confusion_matrix": {
+        "labels": [
+          "false",
+          "true",
+          "NEI"
+        ],
+        "matrix": [
+          [
+            198,
+            59,
+            42
+          ],
+          [
+            70,
+            151,
+            34
+          ],
+          [
+            61,
+            34,
+            26
+          ]
+        ]
+      }
+    },
+    "System_B_ZeroShot_Pipeline": {
+      "accuracy": 40.3,
+      "macro_f1": 31.07,
+      "weighted_f1": 33.83,
+      "per_class": {
+        "false": {
+          "precision": 53.23,
+          "recall": 71.57,
+          "f1": 61.06,
+          "support": 299
+        },
+        "true": {
+          "precision": 43.75,
+          "recall": 2.75,
+          "f1": 5.17,
+          "support": 255
+        },
+        "NEI": {
+          "precision": 19.84,
+          "recall": 42.15,
+          "f1": 26.98,
+          "support": 121
+        }
+      },
+      "predicted_distribution": {
+        "false": 402,
+        "true": 16,
+        "NEI": 257
+      },
+      "confusion_matrix": {
+        "labels": [
+          "false",
+          "true",
+          "NEI"
+        ],
+        "matrix": [
+          [
+            214,
+            7,
+            78
+          ],
+          [
+            120,
+            7,
+            128
+          ],
+          [
+            68,
+            2,
+            51
+          ]
+        ]
+      }
+    },
+    "System_C_FineTuned_Pipeline": {
+      "accuracy": 51.26,
+      "macro_f1": 49.66,
+      "weighted_f1": 53.42,
+      "per_class": {
+        "false": {
+          "precision": 58.68,
+          "recall": 56.52,
+          "f1": 57.58,
+          "support": 299
+        },
+        "true": {
+          "precision": 79.05,
+          "recall": 45.88,
+          "f1": 58.06,
+          "support": 255
+        },
+        "NEI": {
+          "precision": 25.1,
+          "recall": 49.59,
+          "f1": 33.33,
+          "support": 121
+        }
+      },
+      "predicted_distribution": {
+        "false": 288,
+        "true": 148,
+        "NEI": 239
+      },
+      "confusion_matrix": {
+        "labels": [
+          "false",
+          "true",
+          "NEI"
+        ],
+        "matrix": [
+          [
+            169,
+            22,
+            108
+          ],
+          [
+            67,
+            117,
+            71
+          ],
+          [
+            52,
+            9,
+            60
+          ]
+        ]
+      }
+    }
+  },
+  "deltas_c_vs_b": {
+    "accuracy_delta": 10.96,
+    "macro_f1_delta": 18.59,
+    "weighted_f1_delta": 19.59,
+    "true_recall_delta": 43.13,
+    "true_f1_delta": 52.89,
+    "false_f1_delta": -3.48,
+    "nei_f1_delta": 6.35
+  }
+}

@@ -1,0 +1,51 @@
+# FinGuard Phase 2: Financial Domain NLI Fine-Tuning Configuration
+
+model:
+  base_checkpoint: "cross-encoder/nli-distilroberta-base"
+  architecture: "AutoModelForSequenceClassification"
+  num_labels: 3
+  id2label:
+    0: "contradiction"
+    1: "entailment"
+    2: "neutral"
+  label2id:
+    "contradiction": 0
+    "entailment": 1
+    "neutral": 2
+
+data:
+  raw_dataset_path: "data/raw/finfact.json"
+  train_split_path: "data/grouped_train.csv"
+  val_split_path: "data/grouped_val.csv"
+  test_split_path: "data/grouped_test.csv"
+  output_dir: "phase2/data/financial_nli"
+  max_sequence_length: 160
+  truncation: true
+  padding: "max_length"
+  balance_classes_in_training: true
+  max_train_samples_per_class: 1200
+  random_seed: 42
+
+training:
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  batch_size: 16
+  epochs: 3
+  early_stopping_patience: 2
+  warmup_ratio: 0.1
+  gradient_accumulation_steps: 1
+  optimizer: "AdamW"
+  loss_function: "WeightedCrossEntropy"
+  evaluation_strategy: "epoch"
+  metric_for_best_model: "val_macro_f1"
+  greater_is_better: true
+  save_best_model: true
+  output_model_dir: "models/finetuned_nli"
+
+aggregation:
+  # Validation-tuned evidence thresholds
+  entailment_threshold: 0.55
+  contradiction_threshold: 0.55
+  min_evidence_score: 0.60
+  conflict_resolution: "NEI"
+
