@@ -1,0 +1,34 @@
+{
+  "benchmark_name": "FinGuard Gold-Evidence Relevance Benchmark",
+  "version": "1.0.0",
+  "manifest_path": "data/benchmark/v1\\benchmark_manifest.json",
+  "claims_manifest_path": "data/benchmark/v1\\claims_manifest.json",
+  "corpus_manifest_path": "data/benchmark/v1\\corpus_manifest.json",
+  "reference_evidence_path": "data/benchmark/v1\\reference_evidence.json",
+  "relevance_judgments_path": "data/benchmark/v1\\relevance_judgments.json",
+  "pooled_candidates_path": "data/benchmark/v1\\pooled_candidates_annotation.csv",
+  "pool_depth_per_system": 20,
+  "evaluation_sample_size": 75,
+  "random_seed": 42,
+  "binary_relevance_threshold": 2,
+  "graded_relevance_max": 3,
+  "retrieval_systems": [
+    "BM25",
+    "TFIDF",
+    "SVD",
+    "Dense_Transformer",
+    "Hybrid_BM25_Dense",
+    "Hybrid_BM25_TFIDF",
+    "Cross_Encoder_Rerank",
+    "Query_Expansion_BM25"
+  ],
+  "checksums": {
+    "claims_manifest.json": "42a38da875fb1e9765ed13ac34714f2536950f79f379a74472e97fe72557b51f",
+    "corpus_manifest.json": "5b4d394c4bef185b93037c72b368a9f11d60abac613a7b77647b952a0cdbb9ce",
+    "reference_evidence.json": "3c2d997d5b97d9eebd37064f596081cfdaa95c73f3bbf2b185cb3385fb2126b0",
+    "pooled_candidates_annotation.csv": "28b00e25fe0bbc0ac5e9beddb1af5471befc32e51b10587b4ca31e1213863c0b",
+    "pooled_candidates_annotation.jsonl": "40f3a4f1f06ccb68ca1caf61eff436b23ef6f8a2ecf71e85bb1eb22bbf76d56a",
+    "relevance_judgments.json": "1c0d2202170442936ab3b9be246a879a762e9b8f1bc73e2edab774f53c0c1d98",
+    "relevance_judgments.csv": "cbf34a0ce05efef0f197971ab950e38e89303f92f3711012b3fce29391be83c1"
+  }
+}

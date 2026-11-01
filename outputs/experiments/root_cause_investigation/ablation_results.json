@@ -1,0 +1,487 @@
+{
+  "experiment": "read-only root-cause ablations on saved leakage-filtered corpus and fixed grouped test population",
+  "test_claims": 675,
+  "seed": 42,
+  "nli_model": "cross-encoder/nli-distilroberta-base",
+  "nli_id2label": {
+    "0": "contradiction",
+    "1": "entailment",
+    "2": "neutral"
+  },
+  "nli_inference_pair_order": "premise=evidence, hypothesis=claim",
+  "nli_truncation": "truncation=True,max_length=160",
+  "configurations": {
+    "A_BM25_top4_no_reranker": {
+      "description": "First four of the saved BM25-ranked top-15 candidates; same pretrained NLI and unchanged current verifier aggregation.",
+      "metrics": {
+        "n": 675,
+        "accuracy": 0.3940740740740741,
+        "macro_f1": 0.2958421417452986,
+        "weighted_f1": 0.3238364103783172,
+        "per_class_f1": {
+          "false": 0.6022408963585434,
+          "true": 0.029850746268656716,
+          "NEI": 0.2554347826086957
+        },
+        "per_class": {
+          "false": {
+            "precision": 0.5180722891566265,
+            "recall": 0.7190635451505016,
+            "f1": 0.6022408963585434,
+            "support": 299
+          },
+          "true": {
+            "precision": 0.3076923076923077,
+            "recall": 0.01568627450980392,
+            "f1": 0.029850746268656716,
+            "support": 255
+          },
+          "NEI": {
+            "precision": 0.1902834008097166,
+            "recall": 0.3884297520661157,
+            "f1": 0.2554347826086957,
+            "support": 121
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "false",
+            "true",
+            "NEI"
+          ],
+          "rows_gold_columns_prediction": [
+            [
+              215,
+              5,
+              79
+            ],
+            [
+              130,
+              4,
+              121
+            ],
+            [
+              70,
+              4,
+              47
+            ]
+          ]
+        },
+        "prediction_distribution": {
+          "false": 415,
+          "true": 13,
+          "NEI": 247
+        },
+        "nei_rate": 0.36592592592592593
+      }
+    },
+    "B_BM25_CE_top4_NLI": {
+      "description": "Saved actual default pipeline output; reranked top four passed to the existing NLI aggregation.",
+      "metrics": {
+        "n": 675,
+        "accuracy": 0.40296296296296297,
+        "macro_f1": 0.3106860448402052,
+        "weighted_f1": 0.33834159031006034,
+        "per_class_f1": {
+          "false": 0.6105563480741797,
+          "true": 0.05166051660516605,
+          "NEI": 0.2698412698412698
+        },
+        "per_class": {
+          "false": {
+            "precision": 0.5323383084577115,
+            "recall": 0.7157190635451505,
+            "f1": 0.6105563480741797,
+            "support": 299
+          },
+          "true": {
+            "precision": 0.4375,
+            "recall": 0.027450980392156862,
+            "f1": 0.05166051660516605,
+            "support": 255
+          },
+          "NEI": {
+            "precision": 0.19844357976653695,
+            "recall": 0.4214876033057851,
+            "f1": 0.2698412698412698,
+            "support": 121
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "false",
+            "true",
+            "NEI"
+          ],
+          "rows_gold_columns_prediction": [
+            [
+              214,
+              7,
+              78
+            ],
+            [
+              120,
+              7,
+              128
+            ],
+            [
+              68,
+              2,
+              51
+            ]
+          ]
+        },
+        "prediction_distribution": {
+          "false": 402,
+          "true": 16,
+          "NEI": 257
+        },
+        "nei_rate": 0.38074074074074077
+      }
+    },
+    "C_top_reranked_passage_argmax_diagnostic": {
+      "description": "Experiment-only pre-aggregation diagnostic: take only the highest-ranked reranked passage, choose argmax over its entailment/contradiction/neutral probabilities, map labels to true/false/NEI. No production thresholds or multi-passage aggregation. This is a fixed diagnostic, not a production candidate.",
+      "metrics": {
+        "n": 675,
+        "accuracy": 0.33185185185185184,
+        "macro_f1": 0.2833357939516288,
+        "weighted_f1": 0.2980786512468664,
+        "per_class_f1": {
+          "false": 0.5043177892918825,
+          "true": 0.06405693950177936,
+          "NEI": 0.2816326530612245
+        },
+        "per_class": {
+          "false": {
+            "precision": 0.5214285714285715,
+            "recall": 0.4882943143812709,
+            "f1": 0.5043177892918825,
+            "support": 299
+          },
+          "true": {
+            "precision": 0.34615384615384615,
+            "recall": 0.03529411764705882,
+            "f1": 0.06405693950177936,
+            "support": 255
+          },
+          "NEI": {
+            "precision": 0.18699186991869918,
+            "recall": 0.5702479338842975,
+            "f1": 0.2816326530612245,
+            "support": 121
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "false",
+            "true",
+            "NEI"
+          ],
+          "rows_gold_columns_prediction": [
+            [
+              146,
+              12,
+              141
+            ],
+            [
+              87,
+              9,
+              159
+            ],
+            [
+              47,
+              5,
+              69
+            ]
+          ]
+        },
+        "prediction_distribution": {
+          "false": 280,
+          "true": 26,
+          "NEI": 369
+        },
+        "nei_rate": 0.5466666666666666
+      }
+    },
+    "D_actual_default_pipeline": {
+      "description": "Saved actual FinGuardPipeline.run() result with query expansion, BM25 top 15, cross-encoder top 4, pretrained NLI, and production aggregation.",
+      "metrics": {
+        "n": 675,
+        "accuracy": 0.40296296296296297,
+        "macro_f1": 0.3106860448402052,
+        "weighted_f1": 0.33834159031006034,
+        "per_class_f1": {
+          "false": 0.6105563480741797,
+          "true": 0.05166051660516605,
+          "NEI": 0.2698412698412698
+        },
+        "per_class": {
+          "false": {
+            "precision": 0.5323383084577115,
+            "recall": 0.7157190635451505,
+            "f1": 0.6105563480741797,
+            "support": 299
+          },
+          "true": {
+            "precision": 0.4375,
+            "recall": 0.027450980392156862,
+            "f1": 0.05166051660516605,
+            "support": 255
+          },
+          "NEI": {
+            "precision": 0.19844357976653695,
+            "recall": 0.4214876033057851,
+            "f1": 0.2698412698412698,
+            "support": 121
+          }
+        },
+        "confusion_matrix": {
+          "labels": [
+            "false",
+            "true",
+            "NEI"
+          ],
+          "rows_gold_columns_prediction": [
+            [
+              214,
+              7,
+              78
+            ],
+            [
+              120,
+              7,
+              128
+            ],
+            [
+              68,
+              2,
+              51
+            ]
+          ]
+        },
+        "prediction_distribution": {
+          "false": 402,
+          "true": 16,
+          "NEI": 257
+        },
+        "nei_rate": 0.38074074074074077
+      }
+    }
+  },
+  "independence_note": "B and D are exactly the same saved default execution per claim, not independent systems.",
+  "comparable_data_note": "A uses the identical 15 BM25 candidates and takes the top four by BM25; B/D use those same top 15 and rerank to four. Claims, safe corpus, NLI checkpoint, pair order, max length, and final production aggregation are held fixed.",
+  "test_tuning": "No parameters or thresholds tuned on test data.",
+  "truncation_audit": {
+    "nli_passage_pairs": 2700,
+    "pairs_total_tokens_over_160": 142,
+    "fraction_pairs_truncated": 0.052592592592592594,
+    "max_untruncated_pair_tokens": 1466,
+    "median_untruncated_pair_tokens": 81.0,
+    "p95_untruncated_pair_tokens": 163.0,
+    "tokenizer_truncation_side": "right",
+    "pair_truncation_strategy": "Hugging Face tokenizer defaults to longest_first; the model sees <=160 tokens including special tokens."
+  },
+  "NLI_mapping_audit": {
+    "config_id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "output_index_to_semantic": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "semantic_to_verdict": {
+      "entailment": "true",
+      "contradiction": "false",
+      "neutral": "NEI"
+    }
+  },
+  "aggregation_synthetic_cases": [
+    {
+      "case": "single_contradiction_below_0_60",
+      "individual_probabilities": {
+        "This weak evidence passage contradicts.": {
+          "entailment": 0.1,
+          "contradiction": 0.55,
+          "neutral": 0.35
+        }
+      },
+      "support_count": 0,
+      "contradiction_count": 1,
+      "neutral_count": 0,
+      "final_verdict": "NEI",
+      "confidence": 0.5,
+      "class_probabilities": {
+        "false": 0.25,
+        "true": 0.25,
+        "NEI": 0.5
+      },
+      "is_conflicting": false,
+      "reason": "Retrieved evidence does not establish a conclusive relationship (neutral dominates)."
+    },
+    {
+      "case": "single_contradiction_above_0_60",
+      "individual_probabilities": {
+        "This strong evidence passage contradicts.": {
+          "entailment": 0.1,
+          "contradiction": 0.61,
+          "neutral": 0.29
+        }
+      },
+      "support_count": 0,
+      "contradiction_count": 1,
+      "neutral_count": 0,
+      "final_verdict": "false",
+      "confidence": 0.61,
+      "class_probabilities": {
+        "false": 0.61,
+        "true": 0.1,
+        "NEI": 0.29
+      },
+      "is_conflicting": false,
+      "reason": null
+    },
+    {
+      "case": "single_support_above_0_60",
+      "individual_probabilities": {
+        "This strong evidence passage supports.": {
+          "entailment": 0.62,
+          "contradiction": 0.1,
+          "neutral": 0.28
+        }
+      },
+      "support_count": 1,
+      "contradiction_count": 0,
+      "neutral_count": 0,
+      "final_verdict": "true",
+      "confidence": 0.62,
+      "class_probabilities": {
+        "false": 0.1,
+        "true": 0.62,
+        "NEI": 0.28
+      },
+      "is_conflicting": false,
+      "reason": null
+    },
+    {
+      "case": "one_support_plus_weak_contradiction_forces_nei",
+      "individual_probabilities": {
+        "This strong evidence passage supports.": {
+          "entailment": 0.9,
+          "contradiction": 0.03,
+          "neutral": 0.07
+        },
+        "This weak evidence passage contradicts.": {
+          "entailment": 0.1,
+          "contradiction": 0.51,
+          "neutral": 0.39
+        }
+      },
+      "support_count": 1,
+      "contradiction_count": 1,
+      "neutral_count": 0,
+      "final_verdict": "NEI",
+      "confidence": 0.55,
+      "class_probabilities": {
+        "false": 0.45,
+        "true": 0.45,
+        "NEI": 0.1
+      },
+      "is_conflicting": true,
+      "reason": "Conflicting evidence detected across retrieved sources: some sources corroborate while others refute."
+    },
+    {
+      "case": "strong_support_and_strong_contradiction_forces_nei",
+      "individual_probabilities": {
+        "This evidence passage supports claim.": {
+          "entailment": 0.7,
+          "contradiction": 0.1,
+          "neutral": 0.2
+        },
+        "This evidence passage contradicts claim.": {
+          "entailment": 0.1,
+          "contradiction": 0.7,
+          "neutral": 0.2
+        }
+      },
+      "support_count": 1,
+      "contradiction_count": 1,
+      "neutral_count": 0,
+      "final_verdict": "NEI",
+      "confidence": 0.55,
+      "class_probabilities": {
+        "false": 0.45,
+        "true": 0.45,
+        "NEI": 0.1
+      },
+      "is_conflicting": true,
+      "reason": "Conflicting evidence detected across retrieved sources: some sources corroborate while others refute."
+    },
+    {
+      "case": "all_neutral_passages_remain_nei",
+      "individual_probabilities": {
+        "This evidence passage is neutral.": {
+          "entailment": 0.2,
+          "contradiction": 0.2,
+          "neutral": 0.6
+        },
+        "Another evidence passage is neutral.": {
+          "entailment": 0.2,
+          "contradiction": 0.2,
+          "neutral": 0.6
+        }
+      },
+      "support_count": 0,
+      "contradiction_count": 0,
+      "neutral_count": 2,
+      "final_verdict": "NEI",
+      "confidence": 0.5,
+      "class_probabilities": {
+        "false": 0.25,
+        "true": 0.25,
+        "NEI": 0.5
+      },
+      "is_conflicting": false,
+      "reason": "Retrieved evidence does not establish a conclusive relationship (neutral dominates)."
+    },
+    {
+      "case": "support_plus_unthresholded_contradiction_probabilities",
+      "individual_probabilities": {
+        "This evidence passage strongly supports.": {
+          "entailment": 0.9,
+          "contradiction": 0.05,
+          "neutral": 0.05
+        },
+        "This evidence passage is uncommitted.": {
+          "entailment": 0.49,
+          "contradiction": 0.49,
+          "neutral": 0.02
+        }
+      },
+      "support_count": 1,
+      "contradiction_count": 0,
+      "neutral_count": 1,
+      "final_verdict": "true",
+      "confidence": 0.9,
+      "class_probabilities": {
+        "false": 0.49,
+        "true": 0.9,
+        "NEI": -0.39
+      },
+      "is_conflicting": false,
+      "reason": null
+    }
+  ],
+  "artifact_population": {
+    "retrieval_claim_rows": 675,
+    "human_review_claims": 100,
+    "human_review_passage_rows": 500,
+    "human_review_claim_label_sample": {
+      "NEI": 33,
+      "true": 33,
+      "false": 34
+    }
+  }
+}

@@ -1,0 +1,22 @@
+2026-11-01 11:08:49,561 [INFO] Reading per-claim saved retrieval and NLI traces
+2026-11-01 11:08:51,505 [INFO] Loaded 675 distinct claims; 15 BM25 and 15 reranked candidates per row: {(15, 15, 4)}
+2026-11-01 11:09:05,371 [INFO] System A no-reranker ablation: scoring 2700 NLI pairs in batches
+2026-11-01 11:12:16,912 [INFO] NLI batch progress 640/2700
+2026-11-01 11:15:17,293 [INFO] NLI batch progress 1280/2700
+2026-11-01 11:17:56,669 [INFO] NLI batch progress 1920/2700
+2026-11-01 11:20:34,917 [INFO] NLI batch progress 2560/2700
+2026-11-01 11:21:09,286 [INFO] NLI batch progress 2700/2700
+2026-11-01 11:21:17,579 [INFO] NLI pair truncation: 142/2700 (5.26%), median=81.0, p95=163.0
+2026-11-01 11:21:17,580 [INFO] A_BM25_top4_no_reranker accuracy=0.3941 macro_f1=0.2958 NEI=247
+2026-11-01 11:21:17,581 [INFO] B_BM25_CE_top4_NLI accuracy=0.4030 macro_f1=0.3107 NEI=257
+2026-11-01 11:21:17,581 [INFO] C_top_reranked_passage_argmax_diagnostic accuracy=0.3319 macro_f1=0.2833 NEI=369
+2026-11-01 11:21:17,581 [INFO] D_actual_default_pipeline accuracy=0.4030 macro_f1=0.3107 NEI=257
+2026-11-01 11:21:17,582 [INFO] Human review sample: 100 claims x 5 passages = 500 rows; label distribution={'NEI': 33, 'true': 33, 'false': 34}
+2026-11-01 11:21:17,582 [INFO] Retrieval structured analysis exported for 675 claims
+2026-11-01 11:21:17,586 [INFO] Root cause investigation artifacts written to outputs\experiments\root_cause_investigation
+
+2026-11-01 [INFO] NLI config audit: id2label={0: contradiction, 1: entailment, 2: neutral}; premise=evidence, hypothesis=claim; semantic mapping verified.
+2026-11-01 [INFO] Sanity probes A-F: entailment=true; contradiction=false; neutral=NEI; negation=false; wrong metric=false; wrong period top label=false (Pcontradiction=0.5485, below decisive threshold).
+2026-11-01 [INFO] Retrieval audit: 675 claims, 15 BM25 and 15 CE traces each, 4 selected passages each; top-15 normalized duplicate instances=4 across 4 claims.
+2026-11-01 [INFO] Human relevance sheet: 100 stratified claims (34 false, 33 true, 33 NEI), 500 passage rows; human fields intentionally blank.
+2026-11-01 [INFO] No production files or model artifacts were modified; no fine-tuning performed.

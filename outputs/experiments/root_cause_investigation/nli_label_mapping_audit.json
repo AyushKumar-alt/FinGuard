@@ -1,0 +1,36 @@
+{
+  "model_name": "cross-encoder/nli-distilroberta-base",
+  "config_class": "RobertaConfig",
+  "architectures": [
+    "RobertaForSequenceClassification"
+  ],
+  "num_labels": 3,
+  "id2label": {
+    "0": "contradiction",
+    "1": "entailment",
+    "2": "neutral"
+  },
+  "label2id": {
+    "contradiction": 0,
+    "entailment": 1,
+    "neutral": 2
+  },
+  "loaded_from_local_cache": true,
+  "tokenizer_class": "RobertaTokenizer",
+  "tokenizer_is_fast": true,
+  "tokenizer_class_special_token_layout": "<s> premise </s></s> hypothesis </s> (RoBERTa pair encoding)",
+  "output_index_to_nli_semantic": {
+    "0": "contradiction",
+    "1": "entailment",
+    "2": "neutral"
+  },
+  "semantic_to_verdict": {
+    "entailment": "true",
+    "contradiction": "false",
+    "neutral": "NEI"
+  },
+  "implementation_mapping": "FinancialClaimVerifier._init_nli_model reads config.id2label; predict_nli_single_pair applies softmax over logits then name-based mapping.",
+  "source_locations": {
+    "src/verifier.py": "51-65, 70-99"
+  }
+}

@@ -1,0 +1,78 @@
+2026-10-29 22:18:23,541 [INFO] === STEP 1: VERIFYING DATA INTEGRITY & MUTUAL EXCLUSIVITY ===
+2026-10-29 22:18:24,336 [INFO] Loaded train: 2357 rows
+2026-10-29 22:18:24,336 [INFO] Loaded val:   337 rows
+2026-10-29 22:18:24,337 [INFO] Loaded test:  675 rows
+2026-10-29 22:18:24,337 [INFO] Total rows:   3369 (FinFact total=3369)
+2026-10-29 22:18:24,347 [INFO] Train label counts: {'false': 1044, 'true': 892, 'NEI': 421}
+2026-10-29 22:18:24,348 [INFO] Val label counts: {'false': 149, 'true': 128, 'NEI': 60}
+2026-10-29 22:18:24,375 [INFO] Test label counts: {'false': 299, 'true': 255, 'NEI': 121}
+2026-10-29 22:18:24,415 [INFO] ID overlap across all splits: EXACTLY 0 (Mutually exclusive)
+2026-10-29 22:18:24,422 [INFO] Unique URLs: train=1864, val=267, test=531
+2026-10-29 22:18:24,422 [INFO] URL overlap across all splits: EXACTLY 0 (Mutually exclusive sources)
+2026-10-29 22:18:24,430 [INFO] Claim text overlap across all splits: EXACTLY 0 (No duplicate claims)
+2026-10-29 22:18:24,436 [INFO] 
+========================================================
+2026-10-29 22:18:24,437 [INFO] STARTING Experiment A: Raw Combined Text (Source-Grouped)
+2026-10-29 22:18:24,437 [INFO] Text Column: combined_text
+2026-10-29 22:18:24,438 [INFO] ========================================================
+2026-10-29 22:18:24,442 [INFO] Tuning hyperparameter C on validation set...
+2026-10-29 22:18:27,544 [INFO]   C= 0.1 | Val Acc: 0.6291 | Val Macro-F1: 0.5906
+2026-10-29 22:18:31,534 [INFO]   C= 0.5 | Val Acc: 0.6439 | Val Macro-F1: 0.6033
+2026-10-29 22:18:35,929 [INFO]   C= 1.0 | Val Acc: 0.6350 | Val Macro-F1: 0.5836
+2026-10-29 22:18:40,546 [INFO]   C= 2.0 | Val Acc: 0.6409 | Val Macro-F1: 0.5828
+2026-10-29 22:18:44,400 [INFO]   C= 5.0 | Val Acc: 0.6469 | Val Macro-F1: 0.5847
+2026-10-29 22:18:44,401 [INFO] Selected Best C=0.5 based strictly on Val Macro-F1=0.6033
+2026-10-29 22:18:44,401 [INFO] Evaluating selected model on held-out test set...
+2026-10-29 22:18:44,898 [INFO] 
+--- TEST METRICS (Experiment A: Raw Combined Text (Source-Grouped)) ---
+2026-10-29 22:18:44,898 [INFO] Accuracy:         0.5763
+2026-10-29 22:18:44,898 [INFO] Macro Precision:  0.5456
+2026-10-29 22:18:44,899 [INFO] Macro Recall:     0.5429
+2026-10-29 22:18:44,899 [INFO] Macro F1:         0.5400
+2026-10-29 22:18:44,899 [INFO] Weighted F1:      0.5859
+2026-10-29 22:18:44,899 [INFO] 
+Per-Class Breakdown:
+2026-10-29 22:18:44,899 [INFO]   false  -> Precision: 0.6485 | Recall: 0.6355 | F1: 0.6419 | Support: 299
+2026-10-29 22:18:44,899 [INFO]   true   -> Precision: 0.6912 | Recall: 0.5882 | F1: 0.6356 | Support: 255
+2026-10-29 22:18:44,899 [INFO]   NEI    -> Precision: 0.2970 | Recall: 0.4050 | F1: 0.3427 | Support: 121
+2026-10-29 22:18:44,900 [INFO] 
+Confusion Matrix (rows=True, cols=Pred):
+[[190  42  67]
+ [ 56 150  49]
+ [ 47  25  49]]
+2026-10-29 22:18:45,209 [INFO] Saved model A to outputs\experiments\source_grouped_baseline\experiment_a_raw_model.joblib
+2026-10-29 22:18:47,772 [INFO] Saved confusion matrix figure to outputs\experiments\source_grouped_baseline\confusion_matrix_exp_a.png
+2026-10-29 22:18:47,772 [INFO] 
+========================================================
+2026-10-29 22:18:47,772 [INFO] STARTING Experiment B: Cleaned Combined Text (Source-Grouped)
+2026-10-29 22:18:47,773 [INFO] Text Column: cleaned_combined_text
+2026-10-29 22:18:47,773 [INFO] ========================================================
+2026-10-29 22:18:47,776 [INFO] Tuning hyperparameter C on validation set...
+2026-10-29 22:18:50,852 [INFO]   C= 0.1 | Val Acc: 0.6291 | Val Macro-F1: 0.5906
+2026-10-29 22:18:54,430 [INFO]   C= 0.5 | Val Acc: 0.6380 | Val Macro-F1: 0.5960
+2026-10-29 22:18:57,773 [INFO]   C= 1.0 | Val Acc: 0.6409 | Val Macro-F1: 0.5884
+2026-10-29 22:19:01,483 [INFO]   C= 2.0 | Val Acc: 0.6380 | Val Macro-F1: 0.5740
+2026-10-29 22:19:05,044 [INFO]   C= 5.0 | Val Acc: 0.6320 | Val Macro-F1: 0.5591
+2026-10-29 22:19:05,045 [INFO] Selected Best C=0.5 based strictly on Val Macro-F1=0.5960
+2026-10-29 22:19:05,045 [INFO] Evaluating selected model on held-out test set...
+2026-10-29 22:19:05,491 [INFO] 
+--- TEST METRICS (Experiment B: Cleaned Combined Text (Source-Grouped)) ---
+2026-10-29 22:19:05,492 [INFO] Accuracy:         0.5778
+2026-10-29 22:19:05,492 [INFO] Macro Precision:  0.5462
+2026-10-29 22:19:05,492 [INFO] Macro Recall:     0.5438
+2026-10-29 22:19:05,492 [INFO] Macro F1:         0.5411
+2026-10-29 22:19:05,492 [INFO] Weighted F1:      0.5865
+2026-10-29 22:19:05,492 [INFO] 
+Per-Class Breakdown:
+2026-10-29 22:19:05,492 [INFO]   false  -> Precision: 0.6465 | Recall: 0.6421 | F1: 0.6443 | Support: 299
+2026-10-29 22:19:05,492 [INFO]   true   -> Precision: 0.6898 | Recall: 0.5843 | F1: 0.6327 | Support: 255
+2026-10-29 22:19:05,492 [INFO]   NEI    -> Precision: 0.3025 | Recall: 0.4050 | F1: 0.3463 | Support: 121
+2026-10-29 22:19:05,493 [INFO] 
+Confusion Matrix (rows=True, cols=Pred):
+[[192  42  65]
+ [ 58 149  48]
+ [ 47  25  49]]
+2026-10-29 22:19:05,877 [INFO] Saved model B to outputs\experiments\source_grouped_baseline\experiment_b_cleaned_model.joblib
+2026-10-29 22:19:06,347 [INFO] Saved confusion matrix figure to outputs\experiments\source_grouped_baseline\confusion_matrix_exp_b.png
+2026-10-29 22:19:06,874 [INFO] Saved per-class comparison figure to outputs\experiments\source_grouped_baseline\per_class_f1_comparison.png
+2026-10-29 22:19:06,876 [INFO] Saved full results to outputs\experiments\source_grouped_baseline\results.json

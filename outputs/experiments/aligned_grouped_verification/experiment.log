@@ -1,0 +1,83 @@
+2026-11-01 10:23:04,289 [INFO] Starting aligned grouped benchmark with seed=42
+2026-11-01 10:23:05,809 [INFO] Validated exact split sizes train=2357 validation=337 test=675; test source URL overlaps=0, ID overlaps=0, duplicate-claim overlaps=0
+2026-11-01 10:23:07,866 [INFO] Isolated corpus: 2560 train/validation records, 13088 evidence sentences, 11976 unique source URLs; excluded 1253 test-linked evidence entries; test-source URL overlap=0; sha256=e1ab63a917b24ebcbe4b9798fd255cca145134f2a8b456b8e32d13a9db8fdc7e
+2026-11-01 10:23:08,454 [INFO] System A validation C=0.1 accuracy=0.5816 macro_f1=0.5131
+2026-11-01 10:23:08,916 [INFO] System A validation C=0.5 accuracy=0.5905 macro_f1=0.5211
+2026-11-01 10:23:10,015 [INFO] System A validation C=1.0 accuracy=0.5964 macro_f1=0.5178
+2026-11-01 10:23:10,989 [INFO] System A validation C=2.0 accuracy=0.5994 macro_f1=0.5185
+2026-11-01 10:23:12,055 [INFO] System A validation C=5.0 accuracy=0.5964 macro_f1=0.5160
+2026-11-01 10:23:12,143 [INFO] System A selected C=0.5 on grouped validation macro-F1 0.5211
+2026-11-01 10:24:05,173 [INFO] Actual FinGuardPipeline initialized with NLI=cross-encoder/nli-distilroberta-base, reranker=cross-encoder/ms-marco-MiniLM-L-6-v2; isolated corpus=outputs\experiments\aligned_grouped_verification\retrieval_corpus_train_val.json; unused dense indexing skipped on BM25 path
+2026-11-01 10:24:29,869 [INFO] Evidence pipeline progress: 10/675 claims
+2026-11-01 10:24:52,544 [INFO] Evidence pipeline progress: 20/675 claims
+2026-11-01 10:25:26,754 [INFO] Evidence pipeline progress: 30/675 claims
+2026-11-01 10:25:52,287 [INFO] Evidence pipeline progress: 40/675 claims
+2026-11-01 10:26:21,165 [INFO] Evidence pipeline progress: 50/675 claims
+2026-11-01 10:26:42,456 [INFO] Evidence pipeline progress: 60/675 claims
+2026-11-01 10:27:02,649 [INFO] Evidence pipeline progress: 70/675 claims
+2026-11-01 10:27:23,446 [INFO] Evidence pipeline progress: 80/675 claims
+2026-11-01 10:27:43,591 [INFO] Evidence pipeline progress: 90/675 claims
+2026-11-01 10:28:04,603 [INFO] Evidence pipeline progress: 100/675 claims
+2026-11-01 10:28:18,434 [INFO] Evidence pipeline progress: 110/675 claims
+2026-11-01 10:28:37,979 [INFO] Evidence pipeline progress: 120/675 claims
+2026-11-01 10:29:03,915 [INFO] Evidence pipeline progress: 130/675 claims
+2026-11-01 10:29:31,054 [INFO] Evidence pipeline progress: 140/675 claims
+2026-11-01 10:30:00,437 [INFO] Evidence pipeline progress: 150/675 claims
+2026-11-01 10:30:16,818 [INFO] Evidence pipeline progress: 160/675 claims
+2026-11-01 10:30:46,866 [INFO] Evidence pipeline progress: 170/675 claims
+2026-11-01 10:31:12,466 [INFO] Evidence pipeline progress: 180/675 claims
+2026-11-01 10:31:34,227 [INFO] Evidence pipeline progress: 190/675 claims
+2026-11-01 10:32:01,483 [INFO] Evidence pipeline progress: 200/675 claims
+2026-11-01 10:32:25,396 [INFO] Evidence pipeline progress: 210/675 claims
+2026-11-01 10:32:46,396 [INFO] Evidence pipeline progress: 220/675 claims
+2026-11-01 10:33:16,807 [INFO] Evidence pipeline progress: 230/675 claims
+2026-11-01 10:33:44,209 [INFO] Evidence pipeline progress: 240/675 claims
+2026-11-01 10:34:10,477 [INFO] Evidence pipeline progress: 250/675 claims
+2026-11-01 10:34:23,523 [INFO] Evidence pipeline progress: 260/675 claims
+2026-11-01 10:34:32,090 [INFO] Evidence pipeline progress: 270/675 claims
+2026-11-01 10:34:45,969 [INFO] Evidence pipeline progress: 280/675 claims
+2026-11-01 10:35:11,985 [INFO] Evidence pipeline progress: 290/675 claims
+2026-11-01 10:35:39,018 [INFO] Evidence pipeline progress: 300/675 claims
+2026-11-01 10:36:07,777 [INFO] Evidence pipeline progress: 310/675 claims
+2026-11-01 10:36:35,459 [INFO] Evidence pipeline progress: 320/675 claims
+2026-11-01 10:37:00,742 [INFO] Evidence pipeline progress: 330/675 claims
+2026-11-01 10:37:28,015 [INFO] Evidence pipeline progress: 340/675 claims
+2026-11-01 10:37:52,831 [INFO] Evidence pipeline progress: 350/675 claims
+2026-11-01 10:38:24,125 [INFO] Evidence pipeline progress: 360/675 claims
+2026-11-01 10:38:48,002 [INFO] Evidence pipeline progress: 370/675 claims
+2026-11-01 10:39:14,787 [INFO] Evidence pipeline progress: 380/675 claims
+2026-11-01 10:39:38,193 [INFO] Evidence pipeline progress: 390/675 claims
+2026-11-01 10:40:05,660 [INFO] Evidence pipeline progress: 400/675 claims
+2026-11-01 10:40:32,578 [INFO] Evidence pipeline progress: 410/675 claims
+2026-11-01 10:40:45,510 [INFO] Evidence pipeline progress: 420/675 claims
+2026-11-01 10:40:54,178 [INFO] Evidence pipeline progress: 430/675 claims
+2026-11-01 10:41:03,541 [INFO] Evidence pipeline progress: 440/675 claims
+2026-11-01 10:41:12,125 [INFO] Evidence pipeline progress: 450/675 claims
+2026-11-01 10:41:21,405 [INFO] Evidence pipeline progress: 460/675 claims
+2026-11-01 10:41:29,101 [INFO] Evidence pipeline progress: 470/675 claims
+2026-11-01 10:41:36,161 [INFO] Evidence pipeline progress: 480/675 claims
+2026-11-01 10:41:53,600 [INFO] Evidence pipeline progress: 490/675 claims
+2026-11-01 10:42:14,404 [INFO] Evidence pipeline progress: 500/675 claims
+2026-11-01 10:42:35,555 [INFO] Evidence pipeline progress: 510/675 claims
+2026-11-01 10:42:58,053 [INFO] Evidence pipeline progress: 520/675 claims
+2026-11-01 10:43:19,583 [INFO] Evidence pipeline progress: 530/675 claims
+2026-11-01 10:43:41,583 [INFO] Evidence pipeline progress: 540/675 claims
+2026-11-01 10:44:04,051 [INFO] Evidence pipeline progress: 550/675 claims
+2026-11-01 10:44:24,115 [INFO] Evidence pipeline progress: 560/675 claims
+2026-11-01 10:44:45,417 [INFO] Evidence pipeline progress: 570/675 claims
+2026-11-01 10:45:05,991 [INFO] Evidence pipeline progress: 580/675 claims
+2026-11-01 10:45:28,561 [INFO] Evidence pipeline progress: 590/675 claims
+2026-11-01 10:45:50,022 [INFO] Evidence pipeline progress: 600/675 claims
+2026-11-01 10:46:12,000 [INFO] Evidence pipeline progress: 610/675 claims
+2026-11-01 10:46:33,497 [INFO] Evidence pipeline progress: 620/675 claims
+2026-11-01 10:46:55,159 [INFO] Evidence pipeline progress: 630/675 claims
+2026-11-01 10:47:16,531 [INFO] Evidence pipeline progress: 640/675 claims
+2026-11-01 10:47:40,526 [INFO] Evidence pipeline progress: 650/675 claims
+2026-11-01 10:48:02,292 [INFO] Evidence pipeline progress: 660/675 claims
+2026-11-01 10:48:24,438 [INFO] Evidence pipeline progress: 670/675 claims
+2026-11-01 10:48:36,635 [INFO] Evidence pipeline progress: 675/675 claims
+2026-11-01 10:48:39,981 [INFO] Saved predictions for 2025 claim-system pairs.
+2026-11-01 10:48:39,981 [INFO] System A accuracy=0.5556 macro-F1=0.4897
+2026-11-01 10:48:39,981 [INFO] System B accuracy=0.4030 macro-F1=0.3107
+2026-11-01 10:48:39,981 [INFO] System C accuracy=0.4030 macro-F1=0.3107
+2026-11-01 10:48:39,982 [INFO] B/C functional equivalence=True; error rows={'A': 300, 'B': 403, 'C': 403}

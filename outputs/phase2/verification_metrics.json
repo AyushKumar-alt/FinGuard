@@ -1,0 +1,788 @@
+{
+  "task": "Financial Claim Verification",
+  "evaluation_sets": {
+    "Standard_Split_Claim_Plus_Raw_Evidence": {
+      "Logistic Regression": {
+        "Accuracy": 0.747,
+        "Macro Precision": 0.719,
+        "Macro Recall": 0.7222,
+        "Macro F1": 0.7195,
+        "Weighted F1": 0.748,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.7778,
+            "Recall": 0.8125,
+            "F1": 0.7948,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.8035,
+            "Recall": 0.7277,
+            "F1": 0.7637,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.5758,
+            "Recall": 0.6264,
+            "F1": 0.6,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            182,
+            24,
+            18
+          ],
+          [
+            28,
+            139,
+            24
+          ],
+          [
+            24,
+            10,
+            57
+          ]
+        ]
+      },
+      "Linear SVM": {
+        "Accuracy": 0.7253,
+        "Macro Precision": 0.695,
+        "Macro Recall": 0.6751,
+        "Macro F1": 0.6822,
+        "Weighted F1": 0.7203,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.75,
+            "Recall": 0.8304,
+            "F1": 0.7881,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.7459,
+            "Recall": 0.7225,
+            "F1": 0.734,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.589,
+            "Recall": 0.4725,
+            "F1": 0.5244,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            186,
+            27,
+            11
+          ],
+          [
+            34,
+            138,
+            19
+          ],
+          [
+            28,
+            20,
+            43
+          ]
+        ]
+      },
+      "Multinomial Naive Bayes": {
+        "Accuracy": 0.6877,
+        "Macro Precision": 0.756,
+        "Macro Recall": 0.5906,
+        "Macro F1": 0.5915,
+        "Weighted F1": 0.657,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.6531,
+            "Recall": 0.8571,
+            "F1": 0.7413,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.7202,
+            "Recall": 0.7277,
+            "F1": 0.724,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.8947,
+            "Recall": 0.1868,
+            "F1": 0.3091,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            192,
+            32,
+            0
+          ],
+          [
+            50,
+            139,
+            2
+          ],
+          [
+            52,
+            22,
+            17
+          ]
+        ]
+      },
+      "Random Forest": {
+        "Accuracy": 0.7194,
+        "Macro Precision": 0.7147,
+        "Macro Recall": 0.6641,
+        "Macro F1": 0.6784,
+        "Weighted F1": 0.7118,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.7045,
+            "Recall": 0.8304,
+            "F1": 0.7623,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.75,
+            "Recall": 0.7225,
+            "F1": 0.736,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.6897,
+            "Recall": 0.4396,
+            "F1": 0.5369,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            186,
+            31,
+            7
+          ],
+          [
+            42,
+            138,
+            11
+          ],
+          [
+            36,
+            15,
+            40
+          ]
+        ]
+      }
+    },
+    "Standard_Split_Claim_Only_Ablation": {
+      "Logistic Regression": {
+        "Accuracy": 0.6403,
+        "Macro Precision": 0.6111,
+        "Macro Recall": 0.5983,
+        "Macro F1": 0.6028,
+        "Weighted F1": 0.6381,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.6443,
+            "Recall": 0.7277,
+            "F1": 0.6834,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.7135,
+            "Recall": 0.6387,
+            "F1": 0.674,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.4756,
+            "Recall": 0.4286,
+            "F1": 0.4509,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            163,
+            36,
+            25
+          ],
+          [
+            51,
+            122,
+            18
+          ],
+          [
+            39,
+            13,
+            39
+          ]
+        ]
+      },
+      "Linear SVM": {
+        "Accuracy": 0.6482,
+        "Macro Precision": 0.6201,
+        "Macro Recall": 0.5947,
+        "Macro F1": 0.6023,
+        "Weighted F1": 0.6417,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.6473,
+            "Recall": 0.7455,
+            "F1": 0.6929,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.6978,
+            "Recall": 0.6649,
+            "F1": 0.681,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.5152,
+            "Recall": 0.3736,
+            "F1": 0.4331,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            167,
+            40,
+            17
+          ],
+          [
+            49,
+            127,
+            15
+          ],
+          [
+            42,
+            15,
+            34
+          ]
+        ]
+      },
+      "Multinomial Naive Bayes": {
+        "Accuracy": 0.6482,
+        "Macro Precision": 0.6946,
+        "Macro Recall": 0.5547,
+        "Macro F1": 0.5525,
+        "Weighted F1": 0.6177,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.6241,
+            "Recall": 0.808,
+            "F1": 0.7043,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.6701,
+            "Recall": 0.6911,
+            "F1": 0.6804,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.7895,
+            "Recall": 0.1648,
+            "F1": 0.2727,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            181,
+            40,
+            3
+          ],
+          [
+            58,
+            132,
+            1
+          ],
+          [
+            51,
+            25,
+            15
+          ]
+        ]
+      },
+      "Random Forest": {
+        "Accuracy": 0.6462,
+        "Macro Precision": 0.6435,
+        "Macro Recall": 0.5837,
+        "Macro F1": 0.5944,
+        "Weighted F1": 0.6351,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.6045,
+            "Recall": 0.8393,
+            "F1": 0.7028,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.7926,
+            "Recall": 0.5602,
+            "F1": 0.6564,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.5333,
+            "Recall": 0.3516,
+            "F1": 0.4238,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            188,
+            19,
+            17
+          ],
+          [
+            73,
+            107,
+            11
+          ],
+          [
+            50,
+            9,
+            32
+          ]
+        ]
+      }
+    },
+    "Standard_Split_Cleaned_Evidence_Ablation": {
+      "Logistic Regression": {
+        "Accuracy": 0.7372,
+        "Macro Precision": 0.7075,
+        "Macro Recall": 0.7077,
+        "Macro F1": 0.7064,
+        "Weighted F1": 0.7378,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.7647,
+            "Recall": 0.8125,
+            "F1": 0.7879,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.8012,
+            "Recall": 0.7173,
+            "F1": 0.7569,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.5567,
+            "Recall": 0.5934,
+            "F1": 0.5745,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            182,
+            24,
+            18
+          ],
+          [
+            29,
+            137,
+            25
+          ],
+          [
+            27,
+            10,
+            54
+          ]
+        ]
+      },
+      "Linear SVM": {
+        "Accuracy": 0.7273,
+        "Macro Precision": 0.6992,
+        "Macro Recall": 0.6807,
+        "Macro F1": 0.6875,
+        "Weighted F1": 0.7229,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.753,
+            "Recall": 0.8304,
+            "F1": 0.7898,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.7446,
+            "Recall": 0.7173,
+            "F1": 0.7307,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.6,
+            "Recall": 0.4945,
+            "F1": 0.5422,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            186,
+            27,
+            11
+          ],
+          [
+            35,
+            137,
+            19
+          ],
+          [
+            26,
+            20,
+            45
+          ]
+        ]
+      },
+      "Multinomial Naive Bayes": {
+        "Accuracy": 0.6897,
+        "Macro Precision": 0.759,
+        "Macro Recall": 0.5942,
+        "Macro F1": 0.5972,
+        "Weighted F1": 0.6605,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.6531,
+            "Recall": 0.8571,
+            "F1": 0.7413,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.724,
+            "Recall": 0.7277,
+            "F1": 0.7258,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.9,
+            "Recall": 0.1978,
+            "F1": 0.3243,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            192,
+            32,
+            0
+          ],
+          [
+            50,
+            139,
+            2
+          ],
+          [
+            52,
+            21,
+            18
+          ]
+        ]
+      },
+      "Random Forest": {
+        "Accuracy": 0.7312,
+        "Macro Precision": 0.7317,
+        "Macro Recall": 0.6763,
+        "Macro F1": 0.6919,
+        "Weighted F1": 0.724,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.7083,
+            "Recall": 0.8348,
+            "F1": 0.7664,
+            "Support": 224
+          },
+          "true": {
+            "Precision": 0.7676,
+            "Recall": 0.7435,
+            "F1": 0.7553,
+            "Support": 191
+          },
+          "NEI": {
+            "Precision": 0.7193,
+            "Recall": 0.4505,
+            "F1": 0.5541,
+            "Support": 91
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            187,
+            30,
+            7
+          ],
+          [
+            40,
+            142,
+            9
+          ],
+          [
+            37,
+            13,
+            41
+          ]
+        ]
+      }
+    },
+    "Source_Grouped_Split_Zero_URL_Leakage": {
+      "Logistic Regression": {
+        "Accuracy": 0.597,
+        "Macro Precision": 0.5599,
+        "Macro Recall": 0.5529,
+        "Macro F1": 0.5528,
+        "Weighted F1": 0.6057,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.6634,
+            "Recall": 0.6789,
+            "F1": 0.6711,
+            "Support": 299
+          },
+          "true": {
+            "Precision": 0.7277,
+            "Recall": 0.6078,
+            "F1": 0.6624,
+            "Support": 255
+          },
+          "NEI": {
+            "Precision": 0.2885,
+            "Recall": 0.3719,
+            "F1": 0.3249,
+            "Support": 121
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            203,
+            33,
+            63
+          ],
+          [
+            52,
+            155,
+            48
+          ],
+          [
+            51,
+            25,
+            45
+          ]
+        ]
+      },
+      "Linear SVM": {
+        "Accuracy": 0.6015,
+        "Macro Precision": 0.5573,
+        "Macro Recall": 0.5551,
+        "Macro F1": 0.556,
+        "Weighted F1": 0.6009,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.6355,
+            "Recall": 0.6589,
+            "F1": 0.647,
+            "Support": 299
+          },
+          "true": {
+            "Precision": 0.6721,
+            "Recall": 0.651,
+            "F1": 0.6614,
+            "Support": 255
+          },
+          "NEI": {
+            "Precision": 0.3644,
+            "Recall": 0.3554,
+            "F1": 0.3598,
+            "Support": 121
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            197,
+            54,
+            48
+          ],
+          [
+            62,
+            166,
+            27
+          ],
+          [
+            51,
+            27,
+            43
+          ]
+        ]
+      },
+      "Multinomial Naive Bayes": {
+        "Accuracy": 0.5852,
+        "Macro Precision": 0.5605,
+        "Macro Recall": 0.4736,
+        "Macro F1": 0.4356,
+        "Weighted F1": 0.5305,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.5697,
+            "Recall": 0.7926,
+            "F1": 0.6629,
+            "Support": 299
+          },
+          "true": {
+            "Precision": 0.6118,
+            "Recall": 0.6118,
+            "F1": 0.6118,
+            "Support": 255
+          },
+          "NEI": {
+            "Precision": 0.5,
+            "Recall": 0.0165,
+            "F1": 0.032,
+            "Support": 121
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            237,
+            61,
+            1
+          ],
+          [
+            98,
+            156,
+            1
+          ],
+          [
+            81,
+            38,
+            2
+          ]
+        ]
+      },
+      "Random Forest": {
+        "Accuracy": 0.5822,
+        "Macro Precision": 0.5133,
+        "Macro Recall": 0.5037,
+        "Macro F1": 0.5003,
+        "Weighted F1": 0.565,
+        "Per_Class": {
+          "false": {
+            "Precision": 0.6105,
+            "Recall": 0.7023,
+            "F1": 0.6532,
+            "Support": 299
+          },
+          "true": {
+            "Precision": 0.6113,
+            "Recall": 0.6353,
+            "F1": 0.6231,
+            "Support": 255
+          },
+          "NEI": {
+            "Precision": 0.3182,
+            "Recall": 0.1736,
+            "F1": 0.2246,
+            "Support": 121
+          }
+        },
+        "Confusion_Matrix": [
+          [
+            210,
+            65,
+            24
+          ],
+          [
+            72,
+            162,
+            21
+          ],
+          [
+            62,
+            38,
+            21
+          ]
+        ]
+      }
+    }
+  },
+  "key_findings": {
+    "reproduction_status": "Reproduced exact 74.70% Acc and 0.7195 Macro F1 on standard split",
+    "claim_prior_reliance": "Claim-only accuracy is 64.03% vs 74.70% with evidence (+10.67% gain from evidence)",
+    "meta_verdict_leakage_effect": "Stripping explicit verdict cues drops performance by only 0.98% (73.72% vs 74.70%)",
+    "source_domain_generalization_gap": "Grouped split with 0 URL overlap drops accuracy to 59.70% (domain shift to unseen publishers)"
+  },
+  "verification_systems_comparison": {
+    "1_Logistic_Regression_Baseline": {
+      "description": "TF-IDF + Calibrated Balanced Logistic Regression on Claim + Gold Evidence context",
+      "sample_size": 506,
+      "accuracy": 0.7451,
+      "macro_f1": 0.7178,
+      "weighted_f1": 0.746,
+      "per_class": {
+        "false": {
+          "f1": 0.793,
+          "support": 224
+        },
+        "true": {
+          "f1": 0.7603,
+          "support": 191
+        },
+        "NEI": {
+          "f1": 0.6,
+          "support": 91
+        }
+      }
+    },
+    "2_Pretrained_NLI_Verifier_Gold_Evidence": {
+      "description": "Pretrained cross-encoder/nli-distilroberta-base with multi-sentence conflict aggregation on Gold Evidence",
+      "sample_size": 100,
+      "accuracy": 0.34,
+      "macro_f1": 0.2985,
+      "weighted_f1": 0.3182,
+      "per_class": {
+        "false": {
+          "f1": 0.5227,
+          "support": 43
+        },
+        "true": {
+          "f1": 0.1304,
+          "support": 40
+        },
+        "NEI": {
+          "f1": 0.2424,
+          "support": 17
+        }
+      }
+    },
+    "3_Full_End_to_End_Pipeline": {
+      "description": "Financial Claim Parsing + BM25 Retrieval + ms-marco Reranking + nli-distilroberta Verification (Open-domain fact verification)",
+      "sample_size": 100,
+      "accuracy": 0.34,
+      "macro_f1": 0.321,
+      "weighted_f1": 0.3642,
+      "per_class": {
+        "false": {
+          "f1": 0.5185,
+          "support": 43
+        },
+        "true": {
+          "f1": 0.2857,
+          "support": 40
+        },
+        "NEI": {
+          "f1": 0.1587,
+          "support": 17
+        }
+      }
+    }
+  }
+}

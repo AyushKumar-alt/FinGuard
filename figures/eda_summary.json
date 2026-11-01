@@ -1,0 +1,54 @@
+{
+  "total_records": 3369,
+  "labels": {
+    "false": 1492,
+    "true": 1275,
+    "NEI": 602
+  },
+  "avg_claim_words": 11.63,
+  "avg_justification_words": 857.27,
+  "avg_evidence_count": 5.45,
+  "items_with_images": 2529,
+  "top_issues": [
+    {
+      "Issue": "Economy",
+      "Count": 506
+    },
+    {
+      "Issue": "Taxes",
+      "Count": 366
+    },
+    {
+      "Issue": "Share",
+      "Count": 284
+    },
+    {
+      "Issue": "Income",
+      "Count": 211
+    },
+    {
+      "Issue": "Profit",
+      "Count": 201
+    },
+    {
+      "Issue": "Credit",
+      "Count": 190
+    },
+    {
+      "Issue": "Interest",
+      "Count": 190
+    },
+    {
+      "Issue": "National",
+      "Count": 182
+    },
+    {
+      "Issue": "State Budget",
+      "Count": 161
+    },
+    {
+      "Issue": "Funds",
+      "Count": 152
+    }
+  ]
+}

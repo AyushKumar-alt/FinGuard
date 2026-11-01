@@ -1,0 +1,74 @@
+{
+  "dataset_name": "FinFact",
+  "total_records": 3369,
+  "schema_keys": [
+    "url",
+    "claim",
+    "author",
+    "posted",
+    "sci_digest",
+    "justification",
+    "issues",
+    "image_data",
+    "evidence",
+    "label",
+    "visualization_bias"
+  ],
+  "label_distribution": {
+    "false": 1492,
+    "NEI": 602,
+    "true": 1275
+  },
+  "empty_or_missing_fields": {
+    "sci_digest": 708,
+    "justification": 2
+  },
+  "duplicate_analysis": {
+    "unique_exact_claims": 3369,
+    "duplicate_exact_claims_count": 0,
+    "unique_normalized_claims": 3363,
+    "duplicate_normalized_claims_count": 6,
+    "unique_urls": 2662,
+    "duplicate_urls_count": 322,
+    "url_domains": {
+      "www.snopes.com": 2623,
+      "www.politifact.com": 746
+    }
+  },
+  "evidence_analysis": {
+    "total_evidence_sentences": 18316,
+    "total_evidence_hrefs": 26952,
+    "records_with_zero_evidence": 101,
+    "avg_evidence_sentences_per_record": 5.44,
+    "records_with_leakage_cues_in_evidence": 1348,
+    "percentage_records_with_evidence_leakage_cues": 40.01
+  },
+  "multimodal_analysis": {
+    "records_with_images": 2529,
+    "records_with_visualization_bias": 17
+  },
+  "existing_split_audit": {
+    "train_rows": 2358,
+    "val_rows": 505,
+    "test_rows": 506,
+    "total_split_rows": 3369,
+    "train_label_distribution": {
+      "false": 1044,
+      "true": 893,
+      "NEI": 421
+    },
+    "val_label_distribution": {
+      "false": 224,
+      "true": 191,
+      "NEI": 90
+    },
+    "test_label_distribution": {
+      "false": 224,
+      "true": 191,
+      "NEI": 91
+    },
+    "claim_overlap_train_val": 1,
+    "claim_overlap_train_test": 1,
+    "claim_overlap_val_test": 0
+  }
+}

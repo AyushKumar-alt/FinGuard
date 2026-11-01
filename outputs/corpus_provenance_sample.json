@@ -1,0 +1,456 @@
+[
+  {
+    "doc_id": 0,
+    "text": "In July and August, Facebook users shared posts that contained the following text:",
+    "source_urls": [
+      "https://archive.is/eqnFJ",
+      "https://archive.is/Js1Sn",
+      "https://archive.is/vBHE0"
+    ],
+    "parent_claim_ids": [
+      0
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 1,
+    "text": "As part of this broader \"Wall Street versus Main Street\" theme, Biden said the following (emphasis added):",
+    "source_urls": [
+      "https://archive.is/J1kmz"
+    ],
+    "parent_claim_ids": [
+      0
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 2,
+    "text": "One academic has helpfully summed up that philosophical conflict as follows:",
+    "source_urls": [
+      "https://archive.is/fEJCd"
+    ],
+    "parent_claim_ids": [
+      0
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 3,
+    "text": "Shareholder theory asserts that shareholders advance capital to a companys managers, who are supposed to spend corporate funds only in ways that have been authorized by the shareholders. As Milton Friedman wrote, \"There is one and only one social responsibility of business  to use its resources and engage in activities designed to increase its profits so long as it  engages in open and free competition, without deception or fraud.\"",
+    "source_urls": [
+      "https://archive.is/Tq6Pi"
+    ],
+    "parent_claim_ids": [
+      0
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 4,
+    "text": "In 2019, for example, the Business Roundtable  an influential group of chief executive officers of some of the largest companies in the United States  executed a high-profile shift in its approach, writing:",
+    "source_urls": [
+      "https://archive.is/Zwr5N"
+    ],
+    "parent_claim_ids": [
+      0
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 5,
+    "text": "Snopes is still fighting an infodemic of rumors and misinformation surrounding the COVID-19 pandemic, and you can help. Find out what we've learned and how to inoculate yourself against COVID-19 misinformation. Read the latest fact checks about the vaccines. Submit any questionable rumors and advice you encounter. Become a Founding Member to help us hire more fact-checkers. And, please, follow the CDC or WHO for guidance on protecting your community from the disease.",
+    "source_urls": [
+      "https://www.cdc.gov/coronavirus/2019-ncov/index.html",
+      "https://www.snopes.com/2020/03/20/snopes-on-covid-19-fact-checking/",
+      "https://www.snopes.com/projects/founding-members/",
+      "https://www.snopes.com/tag/covid-19-vaccines/",
+      "https://www.snopes.com/contact/",
+      "https://www.snopes.com/news/2021/03/11/one-year-covid-infodemic/",
+      "https://www.who.int/emergencies/diseases/novel-coronavirus-2019"
+    ],
+    "parent_claim_ids": [
+      1,
+      12,
+      17,
+      20,
+      23,
+      120,
+      129,
+      135,
+      144,
+      184,
+      194,
+      266,
+      303,
+      334,
+      346,
+      355,
+      366,
+      535,
+      582,
+      654,
+      741,
+      764,
+      765,
+      766,
+      767,
+      780,
+      781,
+      782,
+      783,
+      784,
+      806,
+      936,
+      1084,
+      1085,
+      1086,
+      1305,
+      1412,
+      1452,
+      1453,
+      1454,
+      1455,
+      1486,
+      1506,
+      1650,
+      1651,
+      1652,
+      1654,
+      1692,
+      1732,
+      1834,
+      1910,
+      1911,
+      1912,
+      1916,
+      1986,
+      2009,
+      2083,
+      2097,
+      2120,
+      2121,
+      2124,
+      2132,
+      2297,
+      2407,
+      2443,
+      2554,
+      2589,
+      2620,
+      2621,
+      2622,
+      2623,
+      2624,
+      2657,
+      2689,
+      2708,
+      2724,
+      2749,
+      2766,
+      2788,
+      2802,
+      2839,
+      2840,
+      2841,
+      2862,
+      2888,
+      2924,
+      3013,
+      3054,
+      3072,
+      3194,
+      3200,
+      3254,
+      3321
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 6,
+    "text": "Compared to the output of most other developed countries, the United States' ability to test for COVID-19, the disease caused by the novel coronavirus, has been extremely limited. This reality has led to rumors that President Donald Trump's administration, or some of its members, have a financial interest in promoting specific tests as opposed to others that would be more widely available or more easily distributed.",
+    "source_urls": [
+      "https://www.politico.com/news/2020/03/06/coronavirus-testing-failure-123166"
+    ],
+    "parent_claim_ids": [
+      1
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 7,
+    "text": "One claim that has emerged in this vein came from a report by Raw Story that asserted \"the Kushner family is trying to cash in on the pandemic that could kill millions of us.\" The basis for this claim concerns the health insurance startup Oscar co-founded by Jared Kushners brother, Joshua Kushner. Jared Kushner is the son-in-law of and special adviser to Trump.",
+    "source_urls": [
+      "https://archive.vn/wip/tXZiM"
+    ],
+    "parent_claim_ids": [
+      1
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 8,
+    "text": "On March 13, 2020, Oscar announced that it would be launching a testing-center locator for COVID-19:",
+    "source_urls": [
+      "https://www.prnewswire.com/news-releases/oscar-launches-first-testing-center-locator-for-covid-19-301023288.html"
+    ],
+    "parent_claim_ids": [
+      1
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 9,
+    "text": "However, the details of Oscar's testing locator have been described incorrectly in several viral social media posts alleging profiteering from the Kushners during the coronavirus pandemic. A well-shared post by a user named \"Boston Judy,\" for example, asserted that \"we didn't have testing because the Trump family circle wanted to wait till they could make a profit.\"",
+    "source_urls": [
+      "https://www.facebook.com/photo.php?fbid=2913246908738427&set=a.167949316601547&type=3&av=241061082705085&eav=AfZYClhd0LQ8wdwzYjDRESbKatdZYWQ4hGaSIdzFzmG7sbB2CEDl2-CPP1GCXK8uMkQ&theater",
+      "https://twitter.com/BostonJudy3/status/1238895920969908230"
+    ],
+    "parent_claim_ids": [
+      1
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 10,
+    "text": "Even if this assertion had merit, the actions Oscar took merely help locate unaffiliated testing centers. As an insurance company, Oscar does not manufacture, perform, analyze, or sell any actual COVID-19 test. Further, the test-center locator that Oscar developed is open to the general public and is not limited to people who get insurance through Oscar. Once a user has taken a short survey, the locator will provide the closest locations for testing in areas in which they operate. While the service also acts as a promotion for the company, it can serve as a testing center locator for any interested party.",
+    "source_urls": [
+      "https://www.prnewswire.com/news-releases/oscar-launches-first-testing-center-locator-for-covid-19-301023288.html"
+    ],
+    "parent_claim_ids": [
+      1
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 11,
+    "text": "On March 13, 2020, U.S. House Democrats and the White House reached a deal on a package of legislation that included a requirement that insurance companies cover the full cost of COVID-19 with no cost sharing. As described by the Brookings Institute, this legislation, if and when it is passed by the Senate and signed by the president:",
+    "source_urls": [
+      "https://www.brookings.edu/blog/usc-brookings-schaeffer-on-health-policy/2020/03/13/what-are-the-health-coverage-provisions-in-the-house-coronavirus-bill/"
+    ],
+    "parent_claim_ids": [
+      1
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 12,
+    "text": "In other words, while the government will likely be subsidizing insurance companies like Oscar, they are doing so to cover losses incurred by the requirement for full reimbursement to members. These laws, and the federal reimbursement they would authorize, would apply to any health insurance company in America, not only Oscar.",
+    "source_urls": [
+      "https://www.brookings.edu/blog/usc-brookings-schaeffer-on-health-policy/2020/03/13/what-are-the-health-coverage-provisions-in-the-house-coronavirus-bill/"
+    ],
+    "parent_claim_ids": [
+      1
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 13,
+    "text": "Joshua Kushner co-founded Oscar in 2012. His venture capital firm, Thrive Capital, holds a significant ownership share. According to financial-disclosure forms released by Jared Kushner and his wife, Ivanka Trump, covering the year 2018, the couple owned and received profit from shares of Thrive:",
+    "source_urls": [
+      "https://s3.amazonaws.com/storage.citizensforethics.org/wp-content/uploads/2019/04/03211930/Ivanka-Trump-2018-278.pdf",
+      "https://www.forbes.com/sites/stevenbertoni/2016/02/22/oscar-health-gets-400-million-and-a-2-7-billion-valuation-from-fidelity/#777a4fb55321",
+      "https://www.politico.com/f/?id=0000015b-2713-d4bd-a5df-bfd3e5af0000"
+    ],
+    "parent_claim_ids": [
+      1
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 14,
+    "text": "Under federal law, executive branch employees are eligible to defer paying capital gains taxes on investments sold to comply with conflict of interest requirements. To take advantage of this benefit, the employees must obtain a Certificate of Divestiture from the Office of Government Ethics prior to selling the asset. Jared Kushner received a certificate of divestiture for, among other things, four Thrive-associated funds in February 2017.",
+    "source_urls": [
+      "https://www2.oge.gov/Web/OGE.nsf/0/CB13B398F168EC5E85258026004CE9B3/$FILE/Certificate%20of%20Divestiture%20Fact%20Sheet.pdf",
+      "https://www.snopes.com/uploads/2020/03/KUSHNER-CERTIFICATES-OF-DIVESTITURE.pdf",
+      "https://www.law.cornell.edu/cfr/text/5/2634.1001"
+    ],
+    "parent_claim_ids": [
+      1
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 15,
+    "text": "In a narrow legal sense, this removed the conflict of interest associated with his financial ownership in his brothers companies, according to Virginia Canter, who serves as chief ethics counsel for the nonpartisan Center for Responsibility and Ethics in Washington (CREW), which also provided us with Kushners Certificate of Divestiture. But, she told us, his divestment does little to alter the appearance of a conflict of interest or reduce the risk of potential corruption, especially if he is using his public office to promote the private interests of his brother or giving him preferential access. The similarities between the Trump Administrations announcement of a website designed to locate COVID-19 testing centers and the website released by Oscar have been a source of speculation about undue access on Joshua Kushners part.",
+    "source_urls": [
+      "https://www.theverge.com/2020/3/15/21180370/google-testing-website-coronavirus-trump-covid-19-confusion",
+      "https://www.motherjones.com/politics/2020/03/jared-kushner-once-controlled-oscar-now-running-a-coronavirus-testing-site/"
+    ],
+    "parent_claim_ids": [
+      1
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 16,
+    "text": "In the Feb. 25, 2015 interview,which we caught online, Patrick said: We are in the best financial shape of any state in the country. Well have about $11 billion or so in our rainy day fund by the end of our fiscal year. Thats more money in reserve than the other 49 states combined.",
+    "source_urls": [
+      "http://www.newsradioklbj.com/blogs/texas-news/listen-lt-gov-dan-patrick-pushes-big-tax-cuts-texas"
+    ],
+    "parent_claim_ids": [
+      2
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 17,
+    "text": "The Texas state comptroller, Glenn Hegar, issued his two-yearstate revenue forecastin January 2015. Hegar said the states rainy day fund will have a balance of nearly $8.5 billion when fiscal 2015 ends Aug. 31, 2015. Hegar projected the fund to grow to $9.8 billion a year later and to $11 billion through August 2017.",
+    "source_urls": [
+      "http://www.texastransparency.org/State_Finance/Budget_Finance/Reports/Biennial_Revenue_Estimate/2016_17/pdf/BRE_2016-17.pdf"
+    ],
+    "parent_claim_ids": [
+      2
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 18,
+    "text": "An online search led us to afall 2014 reportby the National Association of State Budget Officers initially making us think Patrick was onto something. In the report,The Fiscal Survey of States, a section headlined Year-End Balances said that generally, states have made progress rebuilding budgetary reserves since revenues plummeted during the Great Recession of 2009-10. State budgets passed into law for the 2015 fiscal year show reserve balances nationally totaling $53.1 billion, the report said. And, the report said, a disproportionate share of state budget reserves are concentrated in Alaska and Texas, which account for $20.6 billion or 38.8 percent of states reported total balances in fiscal 2015.",
+    "source_urls": [
+      "http://www.nasbo.org/sites/default/files/NASBO%20Fall%202014%20Fiscal%20Survey%20of%20States.pdf"
+    ],
+    "parent_claim_ids": [
+      2
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 19,
+    "text": "For more perspective, we sought guidance from the Pew Charitable Trusts, which in July 2014 issued areporton how states might build rainy day funds. By email, spokeswoman Sarah Leiseca passed along analyst Brenna Erfords conclusion--drawing onFiscal 50, a Pew interactive breaking out the fiscal status of each state--that Patrick got it wrong.",
+    "source_urls": [
+      "http://www.pewtrusts.org/~/media/Assets/2014/07/SFH_Rainy-Day-Fund-Deposit-Rules-Report_ARTREADY_v9.pdf"
+    ],
+    "parent_claim_ids": [
+      2
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 20,
+    "text": "SOURCE: Online interactive,Fiscal 50, Pew Charitable Trusts (chart received in an email from Sarah Leiseca, communications officer, Pew Charitable Trusts, attributing information to research by Brenna Erford, manager, state budget policy team, Pew Charitable Trusts, Feb. 26, 2015).",
+    "source_urls": [
+      "http://www.pewtrusts.org/en/multimedia/data-visualizations/2014/fiscal-50#ind0"
+    ],
+    "parent_claim_ids": [
+      2
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 21,
+    "text": "With a nudge fromMichael Leachman, a state budget expert at the Washington, D.C.-based Center on Budget and Policy Priorities, we spotted charts in the NASBO report indicating the 50 states together in fall 2014 were projecting 2015 fiscal-year-end reserves, meaning regular balances plus rainy day fund set-asides, of about $53 billion--with Texas accounting for $10.7 billion of that and Alaska $10 billion and other states all together projecting nearly $32 billion in ending reserves. An adjoining chart indicates Texas ending fiscal 2015 with $8 billion in its rainy day fund alone compared to other states together winding up with about $34 billion in such funds.",
+    "source_urls": [
+      "http://www.cbpp.org/experts/?fa=view&id=161"
+    ],
+    "parent_claim_ids": [
+      2
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 22,
+    "text": "Click here formoreon the six PolitiFact ratings and how we select facts to check.",
+    "source_urls": [
+      "https://www.politifact.com/truth-o-meter/article/2011/feb/21/principles-truth-o-meter/",
+      "https://www.politifact.com/truth-o-meter/article/2013/nov/01/principles-politifact-punditfact-and-truth-o-meter/"
+    ],
+    "parent_claim_ids": [
+      2,
+      28,
+      35,
+      62,
+      75,
+      118,
+      147,
+      162,
+      165,
+      434,
+      453,
+      769,
+      808,
+      907,
+      917,
+      1013,
+      1017,
+      1018,
+      1019,
+      1028,
+      1029,
+      1030,
+      1153,
+      1154,
+      1255,
+      1263,
+      1303,
+      1304,
+      1369,
+      1382,
+      1560,
+      1696,
+      1697,
+      1698,
+      1699,
+      1766,
+      1767,
+      1768,
+      1793,
+      1836,
+      1896,
+      1918,
+      1937,
+      2269,
+      2273,
+      2323,
+      2324,
+      2325,
+      2404,
+      2438,
+      2457,
+      2537,
+      2551,
+      2552,
+      2553,
+      2564,
+      2767,
+      2805,
+      2934,
+      2967,
+      2981,
+      3035,
+      3044,
+      3045,
+      3046,
+      3055,
+      3059,
+      3107,
+      3110,
+      3156,
+      3171,
+      3172,
+      3173
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 23,
+    "text": "In an essayprinted by theTampa Bay Times, Crisafulli wrote the Senate had partnered with the Obama administration to demand the expansion. But the House believed the move would drag people into a costly system that didnt work.",
+    "source_urls": [
+      "http://www.tampabay.com/opinion/columns/crisafulli-why-the-florida-house-opposes-medicaid-expansion/2227220"
+    ],
+    "parent_claim_ids": [
+      3
+    ],
+    "doc_type": "evidence_sentence"
+  },
+  {
+    "doc_id": 24,
+    "text": "Crisafullis numbers are based on how many Floridians would qualify for the expansion, which would be extended to all adults up to 138 percent of the federal poverty level (100 percent is currently$11,770 for an individual and $24,250 for a family of four). Technically the calculation is actually 133 percent under the law, but a 5 percent deduction is added on top of that.",
+    "source_urls": [
+      "https://aspe.hhs.gov/poverty/15poverty.cfm#thresholds"
+    ],
+    "parent_claim_ids": [
+      3
+    ],
+    "doc_type": "evidence_sentence"
+  }
+]

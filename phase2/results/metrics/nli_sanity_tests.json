@@ -1,0 +1,385 @@
+{
+  "model_name": "cross-encoder/nli-distilroberta-base",
+  "max_length": 160,
+  "tokenizer_call": "tokenizer(evidence_sentence, claim, padding=True, truncation=True, max_length=160, return_tensors=\"pt\")",
+  "examples": [
+    {
+      "case": "A_direct_entailment",
+      "premise": "Company X reported revenue of ?115 crore in FY2025.",
+      "hypothesis": "Company X reported revenue of ?115 crore in FY2025.",
+      "premise_hypothesis_order_verified": true,
+      "raw_logits": [
+        -1.9672478437423706,
+        3.7196242809295654,
+        -1.5081828832626343
+      ],
+      "output_indices_to_labels": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "probabilities_by_output_index": {
+        "0": 0.0033607559744268656,
+        "1": 0.9913205504417419,
+        "2": 0.005318710580468178
+      },
+      "probabilities_by_model_label": {
+        "contradiction": 0.0033607559744268656,
+        "entailment": 0.9913205504417419,
+        "neutral": 0.005318710580468178
+      },
+      "probabilities_by_interpreted_label": {
+        "false": 0.0033607559744268656,
+        "true": 0.9913205504417419,
+        "NEI": 0.005318710580468178
+      },
+      "predicted_model_label": "entailment",
+      "predicted_interpreted_label": "true",
+      "verifier_method_output": {
+        "entailment": 0.9913,
+        "contradiction": 0.0034,
+        "neutral": 0.0053
+      },
+      "token_count_untruncated": 30,
+      "token_count_with_max_length_160": 30,
+      "truncated": false,
+      "token_ids_prefix": [
+        0,
+        21960,
+        1577,
+        431,
+        903,
+        9,
+        17487,
+        15314,
+        4963,
+        11,
+        9878,
+        844,
+        1244,
+        4,
+        2,
+        2,
+        21960,
+        1577,
+        431,
+        903
+      ]
+    },
+    {
+      "case": "B_direct_contradiction",
+      "premise": "Company X reported revenue of ?100 crore in FY2025.",
+      "hypothesis": "Company X reported revenue of ?115 crore in FY2025.",
+      "premise_hypothesis_order_verified": true,
+      "raw_logits": [
+        3.410179376602173,
+        -2.442784070968628,
+        -1.0670162439346313
+      ],
+      "output_indices_to_labels": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "probabilities_by_output_index": {
+        "0": 0.9859631657600403,
+        "1": 0.002831072313711047,
+        "2": 0.011205707676708698
+      },
+      "probabilities_by_model_label": {
+        "contradiction": 0.9859631657600403,
+        "entailment": 0.002831072313711047,
+        "neutral": 0.011205707676708698
+      },
+      "probabilities_by_interpreted_label": {
+        "false": 0.9859631657600403,
+        "true": 0.002831072313711047,
+        "NEI": 0.011205707676708698
+      },
+      "predicted_model_label": "contradiction",
+      "predicted_interpreted_label": "false",
+      "verifier_method_output": {
+        "entailment": 0.0028,
+        "contradiction": 0.986,
+        "neutral": 0.0112
+      },
+      "token_count_untruncated": 30,
+      "token_count_with_max_length_160": 30,
+      "truncated": false,
+      "token_ids_prefix": [
+        0,
+        21960,
+        1577,
+        431,
+        903,
+        9,
+        17487,
+        1866,
+        4963,
+        11,
+        9878,
+        844,
+        1244,
+        4,
+        2,
+        2,
+        21960,
+        1577,
+        431,
+        903
+      ]
+    },
+    {
+      "case": "C_neutral",
+      "premise": "Company X opened two new offices in FY2025.",
+      "hypothesis": "Company X reported revenue of ?115 crore in FY2025.",
+      "premise_hypothesis_order_verified": true,
+      "raw_logits": [
+        -0.598217248916626,
+        -2.971141815185547,
+        3.615428924560547
+      ],
+      "output_indices_to_labels": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "probabilities_by_output_index": {
+        "0": 0.014556935988366604,
+        "1": 0.001356818713247776,
+        "2": 0.9840862154960632
+      },
+      "probabilities_by_model_label": {
+        "contradiction": 0.014556935988366604,
+        "entailment": 0.001356818713247776,
+        "neutral": 0.9840862154960632
+      },
+      "probabilities_by_interpreted_label": {
+        "false": 0.014556935988366604,
+        "true": 0.001356818713247776,
+        "NEI": 0.9840862154960632
+      },
+      "predicted_model_label": "neutral",
+      "predicted_interpreted_label": "NEI",
+      "verifier_method_output": {
+        "entailment": 0.0014,
+        "contradiction": 0.0146,
+        "neutral": 0.9841
+      },
+      "token_count_untruncated": 28,
+      "token_count_with_max_length_160": 28,
+      "truncated": false,
+      "token_ids_prefix": [
+        0,
+        21960,
+        1577,
+        1357,
+        80,
+        92,
+        4088,
+        11,
+        9878,
+        844,
+        1244,
+        4,
+        2,
+        2,
+        21960,
+        1577,
+        431,
+        903,
+        9,
+        17487
+      ]
+    },
+    {
+      "case": "D_negation",
+      "premise": "Company X did not increase revenue during FY2025.",
+      "hypothesis": "Company X increased revenue during FY2025.",
+      "premise_hypothesis_order_verified": true,
+      "raw_logits": [
+        3.957223415374756,
+        -2.670062780380249,
+        -1.566855788230896
+      ],
+      "output_indices_to_labels": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "probabilities_by_output_index": {
+        "0": 0.9947147965431213,
+        "1": 0.00131675461307168,
+        "2": 0.00396845443174243
+      },
+      "probabilities_by_model_label": {
+        "contradiction": 0.9947147965431213,
+        "entailment": 0.00131675461307168,
+        "neutral": 0.00396845443174243
+      },
+      "probabilities_by_interpreted_label": {
+        "false": 0.9947147965431213,
+        "true": 0.00131675461307168,
+        "NEI": 0.00396845443174243
+      },
+      "predicted_model_label": "contradiction",
+      "predicted_interpreted_label": "false",
+      "verifier_method_output": {
+        "entailment": 0.0013,
+        "contradiction": 0.9947,
+        "neutral": 0.004
+      },
+      "token_count_untruncated": 24,
+      "token_count_with_max_length_160": 24,
+      "truncated": false,
+      "token_ids_prefix": [
+        0,
+        21960,
+        1577,
+        222,
+        45,
+        712,
+        903,
+        148,
+        9878,
+        844,
+        1244,
+        4,
+        2,
+        2,
+        21960,
+        1577,
+        1130,
+        903,
+        148,
+        9878
+      ]
+    },
+    {
+      "case": "E_wrong_metric",
+      "premise": "Company X increased operating expenses by 15% in FY2025.",
+      "hypothesis": "Company X increased revenue by 15% in FY2025.",
+      "premise_hypothesis_order_verified": true,
+      "raw_logits": [
+        1.2099103927612305,
+        0.5135188102722168,
+        -1.6129403114318848
+      ],
+      "output_indices_to_labels": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "probabilities_by_output_index": {
+        "0": 0.6419240236282349,
+        "1": 0.3199223577976227,
+        "2": 0.03815356642007828
+      },
+      "probabilities_by_model_label": {
+        "contradiction": 0.6419240236282349,
+        "entailment": 0.3199223577976227,
+        "neutral": 0.03815356642007828
+      },
+      "probabilities_by_interpreted_label": {
+        "false": 0.6419240236282349,
+        "true": 0.3199223577976227,
+        "NEI": 0.03815356642007828
+      },
+      "predicted_model_label": "contradiction",
+      "predicted_interpreted_label": "false",
+      "verifier_method_output": {
+        "entailment": 0.3199,
+        "contradiction": 0.6419,
+        "neutral": 0.0382
+      },
+      "token_count_untruncated": 29,
+      "token_count_with_max_length_160": 29,
+      "truncated": false,
+      "token_ids_prefix": [
+        0,
+        21960,
+        1577,
+        1130,
+        1633,
+        4068,
+        30,
+        379,
+        207,
+        11,
+        9878,
+        844,
+        1244,
+        4,
+        2,
+        2,
+        21960,
+        1577,
+        1130,
+        903
+      ]
+    },
+    {
+      "case": "F_wrong_period",
+      "premise": "Company X reported revenue growth of 15% in FY2024.",
+      "hypothesis": "Company X reported revenue growth of 15% in FY2025.",
+      "premise_hypothesis_order_verified": true,
+      "raw_logits": [
+        0.6579112410545349,
+        -0.327712744474411,
+        -0.14069823920726776
+      ],
+      "output_indices_to_labels": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "probabilities_by_output_index": {
+        "0": 0.5484980940818787,
+        "1": 0.2047029435634613,
+        "2": 0.24679900705814362
+      },
+      "probabilities_by_model_label": {
+        "contradiction": 0.5484980940818787,
+        "entailment": 0.2047029435634613,
+        "neutral": 0.24679900705814362
+      },
+      "probabilities_by_interpreted_label": {
+        "false": 0.5484980940818787,
+        "true": 0.2047029435634613,
+        "NEI": 0.24679900705814362
+      },
+      "predicted_model_label": "contradiction",
+      "predicted_interpreted_label": "false",
+      "verifier_method_output": {
+        "entailment": 0.2047,
+        "contradiction": 0.5485,
+        "neutral": 0.2468
+      },
+      "token_count_untruncated": 30,
+      "token_count_with_max_length_160": 30,
+      "truncated": false,
+      "token_ids_prefix": [
+        0,
+        21960,
+        1577,
+        431,
+        903,
+        434,
+        9,
+        379,
+        207,
+        11,
+        9878,
+        844,
+        1978,
+        4,
+        2,
+        2,
+        21960,
+        1577,
+        431,
+        903
+      ]
+    }
+  ]
+}
