@@ -52,3 +52,4 @@ rrf_weights:
   numerical_query: 1.0
   supporting_direction: 1.0
   contradicting_direction: 1.0
+

@@ -1,34 +1,59 @@
 export type VerdictType = "true" | "false" | "NEI";
 
 export interface FinancialEntities {
-  companies: string[];
-  metrics: string[];
-  percentages: string[];
-  fiscal_periods: string[];
-  currencies: string[];
-  directional_keywords: string[];
-  negation_tokens: string[];
+  organizations?: string[];
+  financial_metrics?: string[];
+  monetary_amounts?: string[];
+  periods?: string[];
+  directional_terms?: Array<{ term: string; direction: string }>;
+  negations?: string[];
+  percentages?: string[];
+  currencies?: string[];
+  comparisons?: string[];
+  tokens?: string[];
+  companies?: string[];
+  metrics?: string[];
+  fiscal_periods?: string[];
+  directional_keywords?: string[];
+  negation_tokens?: string[];
 }
 
 export interface QueryInfo {
-  base_query: string;
-  expansions: string[];
-  combined_query: string;
+  original_query?: string;
+  expanded_queries?: string[];
+  base_query?: string;
+  expansions?: string[];
+  combined_query?: string;
+  multi_queries?: Array<{
+    query: string;
+    group: string;
+    weight: number;
+    purpose: string;
+  }>;
+  query_strings?: string[];
+  key_entities?: string[];
+  key_metrics?: string[];
+  monetary_values?: string[];
+  time_periods?: string[];
 }
 
 export interface CandidateEvidence {
-  doc_id: number;
+  doc_id?: number;
   text: string;
   score?: number;
   rerank_score?: number;
+  retrieval_score?: number;
   rank?: number;
   source_urls?: string[];
   parent_claim_ids?: number[];
+  retrieval_pipeline?: string;
   relevance_grade?: number | null;
   entailment_score?: number;
   contradiction_score?: number;
   neutral_score?: number;
-  assigned_category?: "supporting" | "contradicting" | "neutral" | "contextual";
+  assigned_category?: "supporting" | "contradicting" | "neutral" | "contextual" | "retrieved";
+  publisher?: string;
+  title?: string;
 }
 
 export interface ClaimVerificationResponse {
@@ -36,13 +61,26 @@ export interface ClaimVerificationResponse {
   verdict: VerdictType;
   verdict_display: string;
   confidence: number;
+  class_probabilities?: Record<string, number>;
   is_conflicting: boolean;
   is_uncertain: boolean;
   uncertainty_reason: string | null;
   explanation: string;
   parsed_claim?: FinancialEntities;
   query_info?: QueryInfo;
+  search_query?: string;
   retrieval_mode?: string;
+  retrieval_engine?: string;
+  total_candidates_retrieved?: number;
+  selected_evidence_docs?: CandidateEvidence[];
+  reranker_active?: boolean;
+  verifier_engine?: string;
+  component_status?: {
+    dense_retriever: boolean;
+    cross_encoder_reranker: boolean;
+    nli_verifier: boolean;
+    baseline_verifier: boolean;
+  };
   retrieved_candidates?: CandidateEvidence[];
   reranked_candidates?: CandidateEvidence[];
   supporting_evidence: CandidateEvidence[];
@@ -155,4 +193,3 @@ export interface SystemStatus {
     baseline_verifier: string;
   };
 }
-

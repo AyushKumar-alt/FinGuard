@@ -6,6 +6,11 @@ with FinGuard's retrieval, claim understanding, and verification engines.
 
 import os
 import sys
+
+# Ensure local cache is used without online retry delays in offline sandbox
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
+os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+
 import json
 import argparse
 from typing import Dict, Any, Optional
@@ -62,6 +67,8 @@ def handle_status() -> Dict[str, Any]:
 
     return {
         "status": "online",
+        "healthy": True,
+        "service": "FinGuard Phase 2 Inference Engine",
         "pipeline": "FinGuard 2.0 Research Platform",
         "total_claims": 3369,
         "corpus_units": 12941,
@@ -116,7 +123,7 @@ def main():
             def _send_cors(self):
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-                self.send_header("Access-Control-Allow-Headers", "Content-Type")
+                self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
 
             def do_OPTIONS(self):
                 self.send_response(200)
@@ -124,36 +131,41 @@ def main():
                 self.end_headers()
 
             def do_GET(self):
-                self._send_cors()
-                if self.path in ("/status", "/api/status"):
+                clean_path = self.path.split("?")[0].rstrip("/")
+                if clean_path in ("/status", "/api/status", "/health", "/api/health", ""):
                     res = handle_status()
                     self.send_response(200)
+                    self._send_cors()
                     self.send_header("Content-Type", "application/json")
                     self.end_headers()
                     self.wfile.write(json.dumps(res).encode("utf-8"))
                 else:
                     self.send_response(404)
+                    self._send_cors()
                     self.end_headers()
 
             def do_POST(self):
-                self._send_cors()
-                if self.path in ("/verify", "/api/verify"):
+                clean_path = self.path.split("?")[0].rstrip("/")
+                if clean_path in ("/verify", "/api/verify", "/phase2/verify", "/api/phase2/verify"):
                     content_length = int(self.headers.get("Content-Length", 0))
                     post_data = self.rfile.read(content_length)
                     try:
                         payload = json.loads(post_data.decode("utf-8"))
                         res = handle_verify(payload)
                         self.send_response(200)
+                        self._send_cors()
                         self.send_header("Content-Type", "application/json")
                         self.end_headers()
                         self.wfile.write(json.dumps(res).encode("utf-8"))
                     except Exception as e:
                         self.send_response(500)
+                        self._send_cors()
                         self.send_header("Content-Type", "application/json")
                         self.end_headers()
                         self.wfile.write(json.dumps({"error": str(e)}).encode("utf-8"))
                 else:
                     self.send_response(404)
+                    self._send_cors()
                     self.end_headers()
 
         server = HTTPServer(("0.0.0.0", args.port), FinGuardHTTPHandler)

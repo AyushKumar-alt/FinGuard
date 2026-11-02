@@ -198,8 +198,12 @@ class FinancialClaimVerifier:
                 nli_scores = self.predict_nli_single_pair(claim, stext)
                 item_record = {
                     "text": stext,
-                    "source_urls": sent_info["source_urls"],
-                    "doc_id": sent_info["doc_id"],
+                    "source_urls": sent_info.get("source_urls", []),
+                    "doc_id": sent_info.get("doc_id"),
+                    "score": sent_info.get("score"),
+                    "rerank_score": sent_info.get("rerank_score"),
+                    "publisher": sent_info.get("publisher", ""),
+                    "title": sent_info.get("title", ""),
                     "entailment_score": nli_scores["entailment"],
                     "contradiction_score": nli_scores["contradiction"],
                     "neutral_score": nli_scores["neutral"]
@@ -207,10 +211,13 @@ class FinancialClaimVerifier:
                 all_records.append(item_record)
                 
                 if nli_scores["contradiction"] >= 0.50:
+                    item_record["assigned_category"] = "contradicting"
                     contradicting_evidence.append(item_record)
                 elif nli_scores["entailment"] >= 0.50:
+                    item_record["assigned_category"] = "supporting"
                     supporting_evidence.append(item_record)
                 else:
+                    item_record["assigned_category"] = "neutral"
                     neutral_evidence.append(item_record)
 
             # Documented Multi-Sentence Aggregation Logic

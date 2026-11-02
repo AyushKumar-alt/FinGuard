@@ -6,7 +6,7 @@ import { ExternalLink, ChevronDown, ChevronUp, ShieldCheck, Tag } from "lucide-r
 
 interface EvidenceCardProps {
   evidence: CandidateEvidence;
-  category?: "supporting" | "contradicting" | "neutral" | "contextual";
+  category?: "supporting" | "contradicting" | "neutral" | "contextual" | "retrieved";
   rank?: number;
 }
 
@@ -31,12 +31,17 @@ export function EvidenceCard({
     neutral: {
       border: "border-l-4 border-l-[#7065E8] border-t border-r border-b border-[#E9E7F2] dark:border-[#2D294F]",
       pill: "bg-[#EEECFC] text-[#7065E8] dark:bg-[#2B2564] dark:text-[#A59DFF]",
-      label: "Retrieved Evidence",
+      label: "NLI neutral",
     },
     contextual: {
       border: "border-l-4 border-l-[#D9A441] border-t border-r border-b border-[#E9E7F2] dark:border-[#2D294F]",
       pill: "bg-amber-50 text-[#D9A441] dark:bg-amber-950/40 dark:text-amber-400",
       label: "Contextual Background",
+    },
+    retrieved: {
+      border: "border-l-4 border-l-slate-400 border-t border-r border-b border-[#E9E7F2] dark:border-[#2D294F]",
+      pill: "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200",
+      label: "Retrieved passage · no NLI stance",
     },
   };
 
@@ -49,7 +54,7 @@ export function EvidenceCard({
       className={`bg-white dark:bg-[#18162E] rounded-2xl p-4 shadow-sm hover:shadow-card transition-all ${style.border}`}
     >
       <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {rank !== undefined && (
             <span className="w-6 h-6 rounded-full bg-[#171638] dark:bg-white text-white dark:text-[#171638] text-[11px] font-extrabold flex items-center justify-center">
               #{rank}
@@ -58,6 +63,11 @@ export function EvidenceCard({
           <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${style.pill}`}>
             {style.label}
           </span>
+          {evidence.publisher && (
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#EEECFC] dark:bg-[#2B2564] text-primary border border-primary/20">
+              {evidence.publisher}
+            </span>
+          )}
           {evidence.doc_id !== undefined && (
             <span className="text-[10px] font-mono text-[#85839A] dark:text-[#8E8BA6] flex items-center gap-1">
               <Tag className="w-3 h-3" />
@@ -67,19 +77,37 @@ export function EvidenceCard({
         </div>
 
         {/* Scores: BM25 / Retrieval and Reranker */}
-        <div className="flex items-center gap-2 text-[11px]">
+        <div className="flex flex-wrap items-center gap-2 text-[11px]">
           {evidence.score !== undefined && (
             <span className="text-[#85839A] dark:text-[#8E8BA6]">
-              Retr: <strong className="text-[#171638] dark:text-white font-mono">{evidence.score.toFixed(3)}</strong>
+              Retrieval score: <strong className="text-[#171638] dark:text-white font-mono">{evidence.score.toFixed(4)}</strong>
             </span>
           )}
           {evidence.rerank_score !== undefined && (
             <span className="px-2 py-0.5 rounded-md bg-[#F4F3FA] dark:bg-[#28244D] text-[#7065E8] dark:text-[#A59DFF] font-semibold text-[10px]">
-              Neural: {evidence.rerank_score.toFixed(3)}
+              Cross-encoder score: {evidence.rerank_score.toFixed(4)}
             </span>
           )}
         </div>
       </div>
+
+      {evidence.title && (
+        <div className="mb-2 text-xs font-semibold text-[#615F79] dark:text-[#B5B2CD] italic truncate">
+          &ldquo;{evidence.title}&rdquo;
+        </div>
+      )}
+
+      {(evidence.entailment_score !== undefined ||
+        evidence.contradiction_score !== undefined ||
+        evidence.neutral_score !== undefined) && (
+        <div className="mt-3 flex flex-wrap gap-2 text-[10px] text-[#615F79] dark:text-[#B5B2CD]">
+          <span className="font-bold uppercase tracking-wide">NLI output scores</span>
+          {evidence.entailment_score !== undefined && <span>Entailment {evidence.entailment_score.toFixed(4)}</span>}
+          {evidence.contradiction_score !== undefined && <span>Contradiction {evidence.contradiction_score.toFixed(4)}</span>}
+          {evidence.neutral_score !== undefined && <span>Neutral {evidence.neutral_score.toFixed(4)}</span>}
+          <span className="italic">not calibrated confidence</span>
+        </div>
+      )}
 
       {/* Evidence passage body */}
       <p className="text-sm text-[#171638] dark:text-gray-100 leading-relaxed font-normal">
@@ -132,4 +160,3 @@ export function EvidenceCard({
     </div>
   );
 }
-

@@ -224,3 +224,4 @@ In accordance with strict empirical hygiene guidelines, configuration evaluation
 
 1. **Complex Multi-Clause Claims:** When a claim contains multiple conflicting entities and metrics (e.g. *"Apple revenue rose 10% while profits fell 5%"*), the current rule-based extraction identifies both *increase* and *decrease*. A dependency-parsed semantic clause splitter could generate distinct sub-queries for each clause.
 2. **Unseen Company Entities:** For international or private companies not included in `company_aliases`, the system safely falls back to the exact company name. Incorporating an offline entity knowledge graph (e.g. Wikidata or OpenFIGI) could further broaden alias coverage.
+

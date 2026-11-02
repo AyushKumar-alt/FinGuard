@@ -14,6 +14,7 @@ Provides clear fallbacks for offline environments and prevents source fabricatio
 import os
 import sys
 from typing import Dict, List, Any, Optional
+from urllib.parse import urlparse
 
 # Ensure local imports work reliably
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -189,27 +190,72 @@ class FinGuardPipeline:
         # Assemble candidate docs with provenance
         candidate_docs = []
         for doc_id, score in retrieved_pairs:
+            text = ""
+            source_urls = []
+            parent_claim_ids = []
+            
             if hasattr(self, "_p1_pipeline") and self._p1_pipeline and ("p1_lemma" in used_mode or "lemma_p1" in used_mode):
                 text = self._p1_pipeline.p1_index.get_original_text(doc_id)
                 meta = self._p1_pipeline.p1_index.inner_index.doc_metadata.get(doc_id, {})
-                candidate_docs.append({
-                    "doc_id": doc_id,
-                    "text": text,
-                    "score": round(float(score), 4),
-                    "source_urls": meta.get("source_urls", []),
-                    "parent_claim_ids": meta.get("parent_claim_ids", []),
-                    "retrieval_pipeline": retrieval_engine,
-                })
+                source_urls = list(meta.get("source_urls", []))
+                parent_claim_ids = list(meta.get("parent_claim_ids", []))
             elif doc_id < len(self.corpus):
                 doc = self.corpus[doc_id]
-                candidate_docs.append({
-                    "doc_id": doc_id,
-                    "text": doc["text"],
-                    "score": round(float(score), 4),
-                    "source_urls": doc["source_urls"],
-                    "parent_claim_ids": doc["parent_claim_ids"],
-                    "retrieval_pipeline": retrieval_engine,
-                })
+                text = doc["text"]
+                source_urls = list(doc.get("source_urls", []))
+                parent_claim_ids = list(doc.get("parent_claim_ids", []))
+            else:
+                continue
+
+            # Fallback to parent claim investigation title and URL if source_urls is empty
+            title = ""
+            if parent_claim_ids and hasattr(self.retriever, "query_records"):
+                parent_idx = parent_claim_ids[0]
+                if parent_idx < len(self.retriever.query_records):
+                    parent_record = self.retriever.query_records[parent_idx]
+                    title = parent_record.get("claim", "")
+                    parent_url = parent_record.get("url", "")
+                    if parent_url and parent_url not in source_urls:
+                        source_urls.append(parent_url)
+
+            # Derive clean publisher name from primary source URL
+            publisher = ""
+            if source_urls:
+                try:
+                    host = urlparse(source_urls[0]).netloc.lower()
+                    if host.startswith("www."):
+                        host = host[4:]
+                    publisher_base = host.split(".")[0]
+                    # Map well-known domains to canonical names
+                    domain_names = {
+                        "snopes": "Snopes",
+                        "politifact": "PolitiFact",
+                        "reuters": "Reuters",
+                        "factcheck": "FactCheck.org",
+                        "sec": "U.S. SEC",
+                        "bloomberg": "Bloomberg",
+                        "wsj": "Wall Street Journal",
+                        "cnbc": "CNBC",
+                        "nytimes": "New York Times",
+                        "washingtonpost": "Washington Post",
+                        "apnews": "Associated Press",
+                        "ft": "Financial Times",
+                        "forbes": "Forbes"
+                    }
+                    publisher = domain_names.get(publisher_base, publisher_base.capitalize())
+                except Exception:
+                    publisher = "FinFact Source"
+
+            candidate_docs.append({
+                "doc_id": doc_id,
+                "text": text,
+                "score": round(float(score), 4),
+                "source_urls": source_urls,
+                "parent_claim_ids": parent_claim_ids,
+                "retrieval_pipeline": retrieval_engine,
+                "publisher": publisher,
+                "title": title,
+            })
 
         # Step 4: Cross-Encoder Joint Reranking
         if use_reranker and self.reranker and self.reranker.is_available and candidate_docs:

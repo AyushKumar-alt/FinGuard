@@ -6,36 +6,34 @@ Interactive, evidence-grounded financial claim verification workspace and multi-
 
 ## 🚀 Quick Start
 
-### 1. (Optional) Start Python Backend Daemon
-For live real-time claim verification using the full FinGuard neural & lexical pipeline:
+### 1. Start the Python inference backend
+Keep this running in a terminal from the repository root. The Python service owns query construction, retrieval, reranking, NLI, and verdict aggregation:
 ```bash
-# From repository root
+# From the repository root
+python -m pip install -r requirements.txt
 python -m src.api_bridge serve --port 8000
 ```
 
-### 2. Install & Start Development Server
+### 2. Install and start the frontend
 ```bash
-# Navigate to frontend directory
-cd frontend
-
-# Install dependencies (if not already installed)
-npm install
-
-# Start Next.js development server
-npm run dev
+# In a second terminal, from the repository root
+npm --prefix frontend ci
+npm --prefix frontend run dev
 ```
-Open **[http://localhost:3000](http://localhost:3000)** in your browser.
+Open **[http://localhost:3000](http://localhost:3000)**. The browser UI sends the claim to the Next.js `/api/verify` adapter, which forwards it to `PYTHON_API_URL` (default `http://127.0.0.1:8000`). No inference runs in browser code.
+
+To use a different backend address, set `PYTHON_API_URL` in the frontend server environment before starting Next.js.
 
 ---
 
 ## 🛠️ Build & Production
 
 ```bash
-# Production build
-npm run build
+# From the repository root
+npm --prefix frontend run build
 
-# Start production server
-npm start
+# Start production server on port 3000
+npm --prefix frontend run start
 ```
 
 ---
@@ -57,11 +55,21 @@ npm start
 
 ---
 
-## 🔌 API Architecture & Multi-Tier Fallback
+## API architecture
 
-The verification API (`/api/verify`) uses a 4-tier graceful fallback mechanism:
-1. **Tier 1: HTTP Daemon** — Queries `http://127.0.0.1:8000/verify` (fastest when models are pre-loaded).
-2. **Tier 2: Subprocess Execution** — Invokes `python -m src.api_bridge verify --file <temp>` directly.
-3. **Tier 3: Lexical Corpus Fallback** — Searches canonical `finfact.json` for high-overlap evidence.
-4. **Tier 4: Honest NEI Verdict** — Returns `Not Enough Information` if no sufficient evidence is found.
+```text
+Browser UI (Next.js)
+  -> Next.js POST /api/phase2/verify or /api/verify (validation and HTTP proxy)
+  -> Python API bridge POST /api/phase2/verify or /verify (port 8000)
+  -> FinGuardPipeline.run() and configured Phase 2 components
+  <- actual verdict, evidence with publisher/title/URLs, query diagnostics, and 8-stage transparency
+```
 
+Health check:
+```text
+Browser / Monitoring
+  -> GET /api/health
+  -> Python backend GET /api/health (status, loaded models, corpus statistics)
+```
+
+The UI uses the backend defaults: BM25 retrieval with configured finance-aware multi-query expansion and Weighted RRF when multiple queries are generated, followed by reranking and NLI when available. It does not expose experimental retrieval toggles. If the Python service is unavailable, the API reports an error; it does not invent an NEI prediction or substitute archived labels.
